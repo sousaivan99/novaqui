@@ -2,107 +2,149 @@
 @tailwind components;
 @tailwind utilities;
 
-  .title-xl {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 56px;
-    line-height: 64px;
-    letter-spacing: -0.56px;
-  }
-  .title-lg {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 56px;
-    letter-spacing: -0.48px;
-  }
-  .title-md {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 48px;
-    letter-spacing: -0.40px;
-  }
+.title-xl {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 56px;
+	line-height: 64px;
+	letter-spacing: -0.56px;
+}
+.title-lg {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 48px;
+	line-height: 56px;
+	letter-spacing: -0.48px;
+}
+.title-md {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 40px;
+	line-height: 48px;
+	letter-spacing: -0.4px;
+}
 
-  .title-sm {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -0.16px;
-  }
+.title-sm {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 32px;
+	line-height: 40px;
+	letter-spacing: -0.16px;
+}
 
-  .title-xs {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: 0px;
-  }
+.title-xs {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 32px;
+	letter-spacing: 0px;
+}
 
-  .body-xl {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: -0.36px;
-  }
-  .body-lg {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-  }
-  .body-md {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-  }
+.body-xl {
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 32px;
+	letter-spacing: -0.36px;
+}
+.body-lg {
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+}
+.body-md {
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
 
-  .body-sm {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-  }
+.body-sm {
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+}
 
-  .body-xs {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
-  }
+.body-xs {
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 16px;
+}
 
-  .label-xl {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 32px;
-  }
-  .label-lg {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-  }
-  .label-md {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-  }
+.label-xl {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 32px;
+}
+.label-lg {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 24px;
+}
+.label-md {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+}
 
-  .label-sm {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-  }
+.label-sm {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+}
 
-  .label-xs {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-  }
+.label-xs {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+:root {
+	/* Light Mode */
+	--color-on-surface: 33 37 41; /* #212529 */
+	--color-surface-variant: 240 240 240; /* #F0F0F0 */
+	--color-surface: 225 228 234; /* #FAFAFA */
+	--color-surface-container: 238 240 245; /* #F5F5F5 */
+	--color-surface-container-high: 245 248 250; /* #FFFFFF */
+	--color-surface-container-highest: 255 255 255; /* #FFFFFF */
+
+	--color-soft: 130 130 130; /* #828282 */
+	--color-softer: 170 170 170; /* #828282 */
+	--color-on-hint: 255 255 255; /* #FFFFFF */
+
+	--border-color: 217 220 227; /* #D9DCE3 */
+	--border-color-variant: 70 70 70; /* #B4B4B4 */
+
+	--color-hover: 60 60 70; /* #3c3c46 */
+
+	--color-error: 207 102 121; /* #cf6679 */
+	--color-on-error: 255 255 255; /* #ffffff */
+	--color-error-container: 65 0 20; /* #410014 */
+	--color-on-error-container: 255 218 224; /* #ffdae0 */
+
+	--color-primary: 125 84 243; /* New primary color, e.g., #7D54F3 */
+	--color-primary-light: 165 124 255; /* Lighter shade of the new primary color, e.g., #A57CFF */
+	--color-on-primary: 255 255 255; /* White for contrast, e.g., #FFFFFF */
+	--color-primary-container: 145 104 255; /* Closer to primary light, e.g., #9168FF */
+	--color-on-primary-container: 240 240 240; /* Slightly less bright white for contrast, e.g., #F0F0F0 */
+
+	--color-secondary: 255 138 101; /* #FF8A65 */
+	--color-secondary-light: 255 171 145; /* Lighter shade of the secondary color, e.g., #FFAB91 */
+	--color-on-secondary: 255 255 255; /* #FFFFFF */
+	--color-secondary-container: 255 204 188; /* #FFCCBC */
+	--color-on-secondary-container: 191 54 12; /* #BF360C */
+
+	--color-tertiary: 150 200 170; /* Muted green for variety, e.g., #96C8AA */
+	--color-tertiary-light: 180 230 200; /* Lighter shade of the tertiary color, e.g., #B4E6C8 */
+	--color-on-tertiary: 20 50 30; /* Darker green for contrast, e.g., #14321E */
+	--color-tertiary-container: 120 180 140; /* More distinct green for better differentiation, e.g., #78B48C */
+	--color-on-tertiary-container: 240 255 245; /* Lighter green for contrast, e.g., #F0FFF5 */
+}
