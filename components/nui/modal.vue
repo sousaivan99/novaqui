@@ -1,0 +1,86 @@
+<script setup lang="ts">
+interface Props {
+	title: string
+	fullScreen?: boolean
+}
+
+const { title, fullScreen = false } =
+	defineProps<Props>()
+
+const model = defineModel()
+</script>
+
+<template>
+	<transition name="modal">
+		<div
+			v-if="model"
+			@click="model = false"
+			class="fixed flex items-center w-full h-full justify-center top-0 left-0 z-10 duration-150 transition-all ease-in-out modal-container"
+			:class="{
+				'opacity-0 scale-out-center': !model,
+				'opacity-100 ': model,
+			}"
+		>
+			<div
+				class="bg-surface-container flex flex-col shadow-xl border border-outline rounded-2xl overflow-hidden"
+				:class="{
+					'w-[700px] h-[450px]': !fullScreen,
+					' w-[99.5%] h-[98%]': fullScreen,
+				}"
+			>
+				<!-- header -->
+				<div
+					class="w-full flex items-center justify-between p-2 border-b border-outline"
+				>
+					<span class="label-lg text-on-surface">{{
+						title
+							? title
+							: "add title to prop named: title"
+					}}</span>
+
+					<div
+						@click="model = false"
+						class="flex items-center justify-center w-[32px] h-[32px] hover:bg-surface-container-high rounded-full cursor-pointer"
+					>
+						<Icon
+							name="mdi:close"
+							class="text-on-surface"
+						/>
+					</div>
+				</div>
+				<!-- body -->
+				<div
+					class="flex flex-col w-full h-full p-2 text-on-surface"
+				>
+					<slot name="body">
+						add content to #body
+					</slot>
+				</div>
+				<!-- footer -->
+				<div
+					class="w-full h-fit flex items-center justify-end p-2 border-t border-outline"
+				>
+					<slot name="footer">
+						<button
+							class="w-fit h-fit px-4 py-1 bg-primary text-on-primary rounded-full"
+						>
+							add your button to #footer
+						</button>
+					</slot>
+				</div>
+			</div>
+		</div>
+	</transition>
+</template>
+
+<style scoped>
+.modal-enter-active,
+.modal-leave-active {
+	transition: all 0.2s;
+}
+.modal-enter-from,
+.modal-leave-to {
+	transform: scale(0.9);
+	opacity: 0;
+}
+</style>
