@@ -148,3 +148,36 @@
 	--color-tertiary-container: 120 180 140; /* More distinct green for better differentiation, e.g., #78B48C */
 	--color-on-tertiary-container: 240 255 245; /* Lighter green for contrast, e.g., #F0FFF5 */
 }
+
+/* Dark Mode */
+.dark {
+	--color-on-surface: 240 240 240; /* #F0F0F0 */
+	--color-surface-variant: 240 240 240; /* #F0F0F0 */
+	--color-surface: 45 45 45; /* #2D2D2D */
+	--color-surface-container: 55 55 55; /* #373737 */
+	--color-surface-container-high: 68 68 68; /* #444444 */
+	--color-surface-container-highest: 87 87 87; /* #575757 */
+
+	--border-color: 91 91 91; /* #5B5B5B */
+	--border-color-variant: 110 110 110; /* #6E6E6E */
+}
+
+.theme-blue {
+	--color-primary: 100 160 255; /* Softer blue, e.g., #64A0FF */
+	--color-primary-light: 140 190 255; /* Softer light blue, e.g., #8CBFFF */
+	--color-on-primary: 255 255 255; /* #FFFFFF */
+	--color-primary-container: 100 160 255; /* Softer blue, e.g., #64A0FF */
+	--color-on-primary-container: 255 255 255; /* #FFFFFF */
+
+	--color-secondary: 255 100 90; /* Softer red, e.g., #FF645A */
+	--color-secondary-light: 255 140 130; /* Softer light red, e.g., #FF8C82 */
+	--color-on-secondary: 255 255 255; /* #FFFFFF */
+	--color-secondary-container: 255 100 90; /* Softer red, e.g., #FF645A */
+	--color-on-secondary-container: 255 255 255; /* #FFFFFF */
+
+	--color-tertiary: 100 220 140; /* Softer green, e.g., #64DC8C */
+	--color-tertiary-light: 150 240 180; /* Softer light green, e.g., #96F0B4 */
+	--color-on-tertiary: 255 255 255; /* #FFFFFF */
+	--color-tertiary-container: 100 220 140; /* Softer green, e.g., #64DC8C */
+	--color-on-tertiary-container: 255 255 255; /* #FFFFFF */
+}
