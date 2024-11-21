@@ -59,20 +59,26 @@ const isOpen = ref(false)
 const themes = [
 	{
 		name: "default",
-		class: "",
+		class: "default",
 		color: "#7D54F3",
 	},
 	{
-		name: "Blue",
+		name: "Blueberry",
 		class: "theme-blue",
 		color: "#64A0FF",
 	},
 ]
 
-const selectedTheme = ref(0)
+const selectedTheme = ref(
+	localStorage.getItem("Themes")
+		? parseInt(localStorage.getItem("Themes") as string)
+		: 0,
+)
+console.log("Selected Theme:", selectedTheme.value)
 
 const handleSelectTheme = (index: number) => {
 	selectedTheme.value = index
+	localStorage.setItem("Themes", index.toString())
 	applyTheme()
 }
 

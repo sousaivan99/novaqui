@@ -4,14 +4,20 @@
 	>
 		<div
 			@click.stop="toggle"
-			class="w-[25px] h-[25px] border border-outline rounded-full cursor-pointer flex items-center justify-center"
+			class="w-[32px] h-[32px] border border-outline rounded-full cursor-pointer flex items-center justify-center overflow-hidden hover:scale-105 transition-transform duration-100 ease-in-out"
 		>
-			<span>img</span>
+			<img
+				v-if="first_name"
+				:src="src"
+				:alt="first_name"
+				class="w-full h-full rounded-full"
+			/>
+			<div v-else class="w-full h-full bg-primary" />
 		</div>
 		<Transition name="fade">
 			<div
 				v-if="isOpen"
-				class="absolute profile left-full bottom-0 translate-x-3 rounded-xl w-[250px] h-fit bg-surface-container z-[1] shadow-md border border-outline"
+				class="absolute profile left-full bottom-0 translate-x-3 rounded-xl w-[270px] h-[300px] bg-surface-container z-[1] shadow-md border border-outline flex flex-col justify-between"
 			>
 				<!-- Profile -->
 				<div class="w-full h-fit p-2">
@@ -19,24 +25,30 @@
 						class="w-full h-fit px-3 py-4 bg-surface-container-high rounded-lg flex items-center gap-4"
 					>
 						<div
-							class="min-w-[32px] min-h-[32px] flex items-center justify-center border border-outline rounded-full"
+							class="max-w-[32px] max-h-[32px] flex items-center justify-center border border-outline rounded-full shadow-md"
 						>
-							<span>img</span>
+							<img
+								:src="src"
+								:alt="first_name"
+								class="w-full h-full rounded-full"
+							/>
 						</div>
 						<div class="w-full flex flex-col">
-							<span class="body-sm text-on-surface"
-								>Name</span
-							>
+							<span class="body-sm text-on-surface">
+								{{ first_name }} {{ last_name }}
+							</span>
 							<span
 								class="body-xs opacity-70 text-on-surface"
-								>Role</span
+								>{{ email }}</span
 							>
 						</div>
 					</div>
 				</div>
 
 				<!-- selectors -->
-				<div class="w-full h-full p-2 pt-10">
+				<div
+					class="w-full h-full flex flex-col justify-end p-2 pt-5"
+				>
 					<div class="flex flex-col py-2 gap-2">
 						<div
 							class="flex items-center justify-between"
@@ -61,8 +73,8 @@
 				</div>
 				<!-- logout -->
 				<div
-					@click="logout"
-					class="w-full h-fit p-2 flex items-center justify-center bg-surface-container-high/70 border-t border-outline cursor-pointer rounded-b-xl"
+					@click="userFunction"
+					class="w-full h-fit p-2 flex items-center justify-center bg-surface-container-high/70 border-t border-outline cursor-pointer rounded-b-xl hover:bg-surface-container-highest"
 				>
 					<span class="body-sm text-on-surface"
 						>Logout</span
@@ -74,7 +86,26 @@
 </template>
 
 <script setup lang="ts">
+interface User {
+	first_name: string
+	last_name: string
+	src: string
+	email: string
+	function: () => void
+}
+
+const {
+	first_name,
+	last_name,
+	src,
+	email,
+	function: userFunction,
+} = defineProps<User>()
+
 const isOpen = ref(false)
+
+const isDarkMode = ref(false) // Default to false
+const router = useRouter()
 
 const toggle = () => {
 	isOpen.value = !isOpen.value
@@ -98,17 +129,6 @@ onBeforeUnmount(() => {
 })
 
 // logout
-const logout = async () => {
-	const { error: _error } =
-		await supabase.auth.signOut()
-	if (_error) {
-		error.value.push(_error.message)
-	} else {
-		// Handle successful logout, e.g., redirect to login page
-		console.log("Logged out successfully")
-		router.push("/login")
-	}
-}
 
 // toggle darkmode
 // Utility functions for handling localStorage
@@ -119,8 +139,6 @@ const setTheme = (theme) => {
 const getTheme = () => {
 	return localStorage.getItem("theme")
 }
-
-const isDarkMode = ref(false) // Default to false
 
 if (typeof window !== "undefined") {
 	const savedTheme = getTheme()

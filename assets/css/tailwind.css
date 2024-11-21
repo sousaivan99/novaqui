@@ -163,10 +163,13 @@
 }
 
 .theme-blue {
-	--color-primary: 100 160 255; /* Softer blue, e.g., #64A0FF */
-	--color-primary-light: 140 190 255; /* Softer light blue, e.g., #8CBFFF */
+	--color-primary: 70 130 255; /* More saturated blueberry, e.g., #4682FF */
 	--color-on-primary: 255 255 255; /* #FFFFFF */
-	--color-primary-container: 100 160 255; /* Softer blue, e.g., #64A0FF */
+
+	--color-primary-container: 70 130 255; /* More saturated blueberry, e.g., #4682FF */
+
+	--color-on-primary: 255 255 255; /* #FFFFFF */
+	--color-primary-container: 120 180 255; /* Light blueberry, e.g., #78B4FF */
 	--color-on-primary-container: 255 255 255; /* #FFFFFF */
 
 	--color-secondary: 255 100 90; /* Softer red, e.g., #FF645A */

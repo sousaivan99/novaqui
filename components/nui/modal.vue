@@ -14,7 +14,6 @@ const model = defineModel()
 	<transition name="modal">
 		<div
 			v-if="model"
-			@click="model = false"
 			class="fixed flex items-center w-full h-full justify-center top-0 left-0 z-10 duration-150 transition-all ease-in-out modal-container"
 			:class="{
 				'opacity-0 scale-out-center': !model,
