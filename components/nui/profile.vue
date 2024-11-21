@@ -11,7 +11,7 @@
 		<Transition name="fade">
 			<div
 				v-if="isOpen"
-				class="absolute profile left-full bottom-0 translate-x-3 rounded-xl w-[250px] h-fit bg-surface-container shadow-md border border-outline"
+				class="absolute profile left-full bottom-0 translate-x-3 rounded-xl w-[250px] h-fit bg-surface-container z-[1] shadow-md border border-outline"
 			>
 				<!-- Profile -->
 				<div class="w-full h-fit p-2">
