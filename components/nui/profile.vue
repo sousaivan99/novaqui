@@ -22,10 +22,10 @@
 				<!-- Profile -->
 				<div class="w-full h-fit p-2">
 					<div
-						class="w-full h-fit px-3 py-4 bg-surface-container-high rounded-lg flex items-center gap-4"
+						class="w-full h-fit px-3 py-4 bg-primary rounded-lg flex items-center gap-4"
 					>
 						<div
-							class="max-w-[32px] max-h-[32px] flex items-center justify-center border border-outline rounded-full shadow-md"
+							class="max-w-[32px] max-h-[32px] flex items-center justify-center border border-outline rounded-full"
 						>
 							<img
 								:src="src"
