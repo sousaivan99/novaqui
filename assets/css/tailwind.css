@@ -152,7 +152,7 @@
 /* Dark Mode */
 .dark {
 	--color-on-surface: 240 240 240; /* #F0F0F0 */
-	--color-surface-variant: 240 240 240; /* #F0F0F0 */
+	--color-surface-variant: 60 60 60; /* #F0F0F0 */
 	--color-surface: 45 45 45; /* #2D2D2D */
 	--color-surface-container: 55 55 55; /* #373737 */
 	--color-surface-container-high: 68 68 68; /* #444444 */
