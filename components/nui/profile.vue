@@ -4,7 +4,7 @@
 	>
 		<div
 			@click.stop="toggle"
-			class="w-[32px] h-[32px] border border-outline rounded-full cursor-pointer flex items-center justify-center overflow-hidden hover:scale-105 transition-transform duration-100 ease-in-out"
+			class="hover:opacity-70 w-[32px] h-[32px] border border-outline rounded-full cursor-pointer flex items-center justify-center overflow-hidden transition-all duration-100 ease-in-out"
 		>
 			<img
 				v-if="first_name"
@@ -12,12 +12,15 @@
 				:alt="first_name"
 				class="w-full h-full rounded-full"
 			/>
-			<div v-else class="w-full h-full bg-primary" />
+			<div
+				v-else
+				class="w-full h-full bg-surface-container"
+			/>
 		</div>
 		<Transition name="fade">
 			<div
 				v-if="isOpen"
-				class="absolute profile left-full bottom-0 translate-x-3 rounded-xl w-[270px] h-[300px] bg-surface-container z-[1] shadow-md border border-outline flex flex-col justify-between"
+				class="absolute profile right-0 top-full translate-y-3 rounded-xl w-[270px] h-fit bg-surface-container z-[1] shadow-md border border-outline flex flex-col justify-between"
 			>
 				<!-- Profile -->
 				<div class="w-full h-fit p-2">
@@ -25,7 +28,7 @@
 						class="w-full h-fit px-3 py-4 bg-primary rounded-lg flex items-center gap-4"
 					>
 						<div
-							class="max-w-[32px] max-h-[32px] flex items-center justify-center border border-outline rounded-full"
+							class="max-w-[32px] max-h-[32px] flex items-center justify-center rounded-full"
 						>
 							<img
 								:src="src"
@@ -34,11 +37,11 @@
 							/>
 						</div>
 						<div class="w-full flex flex-col">
-							<span class="body-sm text-on-surface">
+							<span class="body-sm text-white">
 								{{ first_name }} {{ last_name }}
 							</span>
 							<span
-								class="body-xs opacity-70 text-on-surface"
+								class="body-xs opacity-70 text-white"
 								>{{ email }}</span
 							>
 						</div>
@@ -47,7 +50,7 @@
 
 				<!-- selectors -->
 				<div
-					class="w-full h-full flex flex-col justify-end p-2 pt-5"
+					class="w-full flex flex-col justify-end p-2"
 				>
 					<div class="flex flex-col py-2 gap-2">
 						<div
@@ -91,7 +94,7 @@ interface User {
 	last_name: string
 	src: string
 	email: string
-	function: () => void
+	function?: () => void
 }
 
 const {

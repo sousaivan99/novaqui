@@ -130,8 +130,8 @@
 	--color-error-container: 65 0 20; /* #410014 */
 	--color-on-error-container: 255 218 224; /* #ffdae0 */
 
-	--color-primary: 125 84 243; /* New primary color, e.g., #7D54F3 */
-	--color-primary-light: 165 124 255; /* Lighter shade of the new primary color, e.g., #A57CFF */
+	--color-primary: 165 124 255; /* New primary color, e.g., #A57CFF */
+	--color-primary-light: 145 104 255; /* Closer to primary light, e.g., #9168FF */
 	--color-on-primary: 255 255 255; /* White for contrast, e.g., #FFFFFF */
 	--color-primary-container: 145 104 255; /* Closer to primary light, e.g., #9168FF */
 	--color-on-primary-container: 240 240 240; /* Slightly less bright white for contrast, e.g., #F0F0F0 */

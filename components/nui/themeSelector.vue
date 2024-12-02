@@ -21,13 +21,13 @@
 		<Transition name="fade">
 			<div
 				v-if="isOpen"
-				class="absolute flex flex-col left-full translate-x-4 z-[2] top-1/2 -translate-y-1/2 w-[250px] bg-surface-container-high rounded-3xl p-2 border border-outline cursor-pointer duration-100 transition-color ease-in-out overflow-hidden"
+				class="absolute flex flex-col right-full -translate-x-2 z-[2] top-1/2 -translate-y-1/2 w-[250px] bg-surface-container-high rounded-xl p-2 border border-outline cursor-pointer duration-100 transition-color ease-in-out overflow-hidden"
 			>
 				<div
 					v-for="(theme, index) in themes"
 					:key="index"
 					@click="handleSelectTheme(index)"
-					class="flex items-center gap-3 capitalize rounded-full cursor-pointer p-2"
+					class="flex items-center gap-3 capitalize rounded-md cursor-pointer p-2"
 					:class="{
 						'bg-primary/70': selectedTheme === index,
 						'hover:bg-surface-container-highest':
