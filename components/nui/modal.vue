@@ -49,7 +49,7 @@ const model = defineModel()
 				</div>
 				<!-- body -->
 				<div
-					class="flex flex-col w-full h-full p-2 text-on-surface"
+					class="flex flex-col w-full h-full p-2 text-on-surface overflow-x-hidden overflow-y-auto"
 				>
 					<slot name="body">
 						add content to #body

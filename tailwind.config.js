@@ -6,6 +6,7 @@ export default {
       colors: {
         surface: 'rgb(var(--color-surface) / <alpha-value>)',
         'on-surface': 'rgb(var(--color-on-surface) / <alpha-value>)',
+        'on-surface-variant': 'rgb(var(--color-on-surface-variant) / <alpha-value>)',
         'surface-variant': 'rgb(var(--color-surface-variant) / <alpha-value>)',
         'surface-container': 'rgb(var(--color-surface-container) / <alpha-value>)',
         'surface-container-high': 'rgb(var(--color-surface-container-high) / <alpha-value>)',

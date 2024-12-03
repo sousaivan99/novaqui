@@ -1,21 +1,25 @@
 <template>
 	<div
-		class="w-full h-[25px] flex items-center justify-center relative profile-cont"
+		class="w-full min-h-[25px] flex items-center justify-center relative profile-cont"
 	>
 		<div
+			class="w-full min-h-[25px] flex items-center justify-center relative profile-cont gap-2 hover:bg-surface-container p-1 rounded-full"
 			@click.stop="toggle"
-			class="hover:opacity-70 w-[32px] h-[32px] border border-outline rounded-full cursor-pointer flex items-center justify-center overflow-hidden transition-all duration-100 ease-in-out"
 		>
-			<img
-				v-if="first_name"
-				:src="src"
-				:alt="first_name"
-				class="w-full h-full rounded-full"
-			/>
 			<div
-				v-else
-				class="w-full h-full bg-surface-container"
-			/>
+				class="w-[32px] h-[32px] border border-outline rounded-full cursor-pointer flex items-center justify-center overflow-hidden transition-all duration-100 ease-in-out"
+			>
+				<img
+					v-if="first_name"
+					:src="src"
+					:alt="first_name"
+					class="w-full h-full rounded-full"
+				/>
+				<div
+					v-else
+					class="w-full h-full bg-surface-container"
+				/>
+			</div>
 		</div>
 		<Transition name="fade">
 			<div
