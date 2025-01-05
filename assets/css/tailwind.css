@@ -1,23 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Splash&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Splash&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.splash-regular {
+	font-family: "Splash", serif;
+	font-weight: 400;
+	font-style: normal;
+}
+.rubik {
+	font-family: "Rubik Glitch", serif;
+	font-weight: 400;
+	font-style: normal;
+}
 
 .title-xl {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 56px;
 	line-height: 64px;
 	letter-spacing: -0.56px;
 }
 .title-lg {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 48px;
 	line-height: 56px;
 	letter-spacing: -0.48px;
 }
 .title-md {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 40px;
 	line-height: 48px;
@@ -25,7 +37,7 @@
 }
 
 .title-sm {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 32px;
 	line-height: 40px;
@@ -33,7 +45,7 @@
 }
 
 .title-xs {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 24px;
 	line-height: 32px;
@@ -41,67 +53,67 @@
 }
 
 .body-xl {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 400;
 	font-size: 24px;
 	line-height: 32px;
 	letter-spacing: -0.36px;
 }
 .body-lg {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 24px;
 }
 .body-md {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 24px;
 }
 
 .body-sm {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 20px;
 }
 
 .body-xs {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 16px;
 }
 
 .label-xl {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 24px;
 	line-height: 32px;
 }
 .label-lg {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 24px;
 }
 .label-md {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 24px;
 }
 
 .label-sm {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 20px;
 }
 
 .label-xs {
-	font-family: "Inter", sans-serif;
+	font-family: "Noto", sans-serif;
 	font-weight: 500;
 	font-size: 12px;
 	line-height: 16px;
@@ -110,6 +122,7 @@
 :root {
 	/* Light Mode */
 	--color-on-surface: 33 37 41; /* #212529 */
+	--color-on-surface-variant: 33 37 41; /* #212529 */
 	--color-surface-variant: 240 240 240; /* #F0F0F0 */
 	--color-surface: 225 228 234; /* #FAFAFA */
 	--color-surface-container: 238 240 245; /* #F5F5F5 */
@@ -126,15 +139,16 @@
 	--color-hover: 60 60 70; /* #3c3c46 */
 
 	--color-error: 207 102 121; /* #cf6679 */
+	--color-error-light: 239 154 154; /* #ef9a9a */
 	--color-on-error: 255 255 255; /* #ffffff */
-	--color-error-container: 65 0 20; /* #410014 */
-	--color-on-error-container: 255 218 224; /* #ffdae0 */
+	--color-error-container: 255 204 204; /* #ffcccc */
+	--color-on-error-container: 50 50 50; /* #323232 */
 
-	--color-primary: 165 124 255; /* New primary color, e.g., #A57CFF */
-	--color-primary-light: 145 104 255; /* Closer to primary light, e.g., #9168FF */
+	--color-primary: 51 153 255; /* Lighter blue, e.g., #3399FF */
+	--color-primary-light: 102 178 255; /* Even lighter blue, e.g., #66B2FF */
 	--color-on-primary: 255 255 255; /* White for contrast, e.g., #FFFFFF */
-	--color-primary-container: 145 104 255; /* Closer to primary light, e.g., #9168FF */
-	--color-on-primary-container: 240 240 240; /* Slightly less bright white for contrast, e.g., #F0F0F0 */
+	--color-primary-container: 153 204 255; /* Even lighter blue, e.g., #99CCFF */
+	--color-on-primary-container: 0 102 204; /* Darker blue for contrast, e.g., #0066CC */
 
 	--color-secondary: 255 138 101; /* #FF8A65 */
 	--color-secondary-light: 255 171 145; /* Lighter shade of the secondary color, e.g., #FFAB91 */
@@ -147,30 +161,41 @@
 	--color-on-tertiary: 20 50 30; /* Darker green for contrast, e.g., #14321E */
 	--color-tertiary-container: 120 180 140; /* More distinct green for better differentiation, e.g., #78B48C */
 	--color-on-tertiary-container: 240 255 245; /* Lighter green for contrast, e.g., #F0FFF5 */
+
+	--scroll-bar-color: 60 60 70; /* #3C3C46 */
+	--scroll-bar-color-hover: 70 70 80; /* #46464C */
+	--scroll-bar-rail-color: 40 40 50; /* #282832 */
 }
 
 /* Dark Mode */
 .dark {
 	--color-on-surface: 240 240 240; /* #F0F0F0 */
-	--color-surface-variant: 60 60 60; /* #F0F0F0 */
-	--color-surface: 45 45 45; /* #2D2D2D */
-	--color-surface-container: 55 55 55; /* #373737 */
-	--color-surface-container-high: 68 68 68; /* #444444 */
-	--color-surface-container-highest: 87 87 87; /* #575757 */
+	--color-on-surface-variant: 240 240 240; /* #212529 */
+
+	--color-surface-variant: 50 50 70; /* #3C3C3C */
+	--color-surface: 10 10 20; /* Very dark blue, almost black, e.g., #0A0A14 */
+	--color-surface-container: 30 30 40; /* Dark gray with a subtle hint of blue, e.g., #1E1E28 */
+	--color-surface-container-high: 40 40 50; /* Darker gray with a subtle hint of blue, e.g., #282832 */
+	--color-surface-container-highest: 50 50 60; /* Even darker gray with a subtle hint of blue, e.g., #32323C */
 
 	--border-color: 91 91 91; /* #5B5B5B */
 	--border-color-variant: 110 110 110; /* #6E6E6E */
+
+	--scroll-bar-color: 60 60 70; /* #3C3C46 */
+	--scroll-bar-color-hover: 70 70 80; /* #46464C */
+	--scroll-bar-rail-color: 40 40 50; /* #282832 */
+
+	
 }
 
 .theme-blue {
-	--color-primary: 70 130 255; /* More saturated blueberry, e.g., #4682FF */
-	--color-on-primary: 255 255 255; /* #FFFFFF */
 
-	--color-primary-container: 70 130 255; /* More saturated blueberry, e.g., #4682FF */
 
-	--color-on-primary: 255 255 255; /* #FFFFFF */
-	--color-primary-container: 120 180 255; /* Light blueberry, e.g., #78B4FF */
-	--color-on-primary-container: 255 255 255; /* #FFFFFF */
+	--color-primary: 0 255 255; /* Neon cyan, e.g., #00FFFF */
+	--color-primary-light: 0 255 127; /* Neon green, e.g., #00FF7F */
+	--color-on-primary: 0 0 0; /* Black for contrast, e.g., #000000 */
+	--color-primary-container: 0 255 255; /* Neon cyan, e.g., #00FFFF */
+	--color-on-primary-container: 0 0 0; /* Black for contrast, e.g., #000000 */
 
 	--color-secondary: 255 100 90; /* Softer red, e.g., #FF645A */
 	--color-secondary-light: 255 140 130; /* Softer light red, e.g., #FF8C82 */
@@ -184,3 +209,5 @@
 	--color-tertiary-container: 100 220 140; /* Softer green, e.g., #64DC8C */
 	--color-on-tertiary-container: 255 255 255; /* #FFFFFF */
 }
+
+

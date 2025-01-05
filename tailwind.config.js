@@ -15,11 +15,16 @@ export default {
         'soft': 'rgb(var(--color-soft) / <alpha-value>)',
         'softer': 'rgb(var(--color-softer) / <alpha-value>)',
 
-        'error': 'rgb(var(--color-error) / <alpha-value>)',
 
 
         'outline': 'rgb(var(--border-color) / <alpha-value>)',
         'outline-variant': 'rgb(var(--border-color-variant) / <alpha-value>)',
+
+        'error': 'rgb(var(--color-error) / <alpha-value>)',
+        'error-light': 'rgb(var(--color-error-light) / <alpha-value>)',
+        'on-error': 'rgb(var(--color-on-error) / <alpha-value>)',
+        'error-container': 'rgb(var(--color-error-container) / <alpha-value>)',
+        'on-error-container': 'rgb(var(--color-on-error-container) / <alpha-value>)',
 
         'primary': 'rgb(var(--color-primary) / <alpha-value>)',
         'primary-light': 'rgb(var(--color-primary-light) / <alpha-value>)',

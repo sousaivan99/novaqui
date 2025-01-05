@@ -19,5 +19,8 @@
     "nuxt": "^3.14.159",
     "typescript": "^5.6.3",
     "vue": "latest"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.7"
   }
 }

@@ -2,9 +2,13 @@
 	<div
 		class="flex flex-col gap-2 bg-surface w-screen h-screen overflow-x-hidden overflow-y-auto p-5"
 	>
+		<NuiModeSelector class="fixed top-3 right-3" />
+		<div>
+			<NuiChart :type="type" :data="chartData" />
+		</div>
 		<!-- surfaces -->
 		<div class="flex flex-col gap-3">
-			<span>Surfaces</span>
+			<span class="text-on-surface">Surfaces</span>
 			<div
 				class="flex gap-3 items-center justify-between"
 			>
@@ -43,9 +47,9 @@
 				</div>
 			</div>
 		</div>
-		<!-- primary -->
+		<!-- primary colors -->
 		<div class="flex flex-col gap-3">
-			<span>Primary</span>
+			<span class="text-on-surface">Primary</span>
 			<div
 				class="flex gap-3 items-center justify-between"
 			>
@@ -66,7 +70,7 @@
 				</div>
 			</div>
 
-			<span>Secondary</span>
+			<span class="text-on-surface">Secondary</span>
 			<div
 				class="flex gap-3 items-center justify-between"
 			>
@@ -86,7 +90,7 @@
 					Secondary container
 				</div>
 			</div>
-			<span>Tertiary</span>
+			<span class="text-on-surface">Tertiary</span>
 			<div
 				class="flex gap-3 items-center justify-between"
 			>
@@ -104,6 +108,26 @@
 					class="w-full h-24 rounded-xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center"
 				>
 					Tertiary container
+				</div>
+			</div>
+			<span class="text-on-surface">Error colors</span>
+			<div
+				class="flex gap-3 items-center justify-between"
+			>
+				<div
+					class="w-full h-24 rounded-xl bg-error text-on-error flex items-center justify-center"
+				>
+					Error
+				</div>
+				<div
+					class="w-full h-24 rounded-xl bg-error-light text-on-error flex items-center justify-center"
+				>
+					Error
+				</div>
+				<div
+					class="w-full h-24 rounded-xl bg-error-container text-on-error-container flex items-center justify-center"
+				>
+					Error
 				</div>
 			</div>
 		</div>
@@ -125,6 +149,7 @@
 				icon="material-symbols:person"
 				required
 				hint="test"
+				disabled
 			/>
 		</div>
 		<!-- toggle -->
@@ -176,6 +201,9 @@
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const type = "line"
+const chartData = [2725, 2680, 2500, 2760, 2678]
+</script>
 
 <style scoped></style>

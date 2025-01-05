@@ -94,10 +94,10 @@
 
 <script setup lang="ts">
 interface User {
-	first_name: string
-	last_name: string
+	first_name?: string
+	last_name?: string
 	src: string
-	email: string
+	email?: string
 	function?: () => void
 }
 
