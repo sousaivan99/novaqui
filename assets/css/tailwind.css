@@ -122,12 +122,12 @@
 :root {
 	/* Light Mode */
 	--color-on-surface: 33 37 41; /* #212529 */
-	--color-on-surface-variant: 33 37 41; /* #212529 */
+	--color-on-surface-variant: 33 37 91; /* #21255B */
 	--color-surface-variant: 240 240 240; /* #F0F0F0 */
-	--color-surface: 225 228 234; /* #FAFAFA */
-	--color-surface-container: 238 240 245; /* #F5F5F5 */
-	--color-surface-container-high: 245 248 250; /* #FFFFFF */
-	--color-surface-container-highest: 255 255 255; /* #FFFFFF */
+	--color-surface: 255 255 255; /* #FFFFFF */
+	--color-surface-container: 248 250 252; /* #F8FAFC */
+	--color-surface-container-high: 240 242 247; /* #F0F2F7 */
+	--color-surface-container-highest: 230 233 239; /* #E6E9EF */
 
 	--color-soft: 130 130 130; /* #828282 */
 	--color-softer: 170 170 170; /* #828282 */
@@ -144,6 +144,12 @@
 	--color-error-container: 255 204 204; /* #ffcccc */
 	--color-on-error-container: 50 50 50; /* #323232 */
 
+	--color-success: 76 175 80; /* #4CAF50 */
+	--color-success-light: 129 199 132; /* #81C784 */
+	--color-on-success: 255 255 255; /* #FFFFFF */
+	--color-success-container: 200 230 201; /* #C8E6C9 */
+	--color-on-success-container: 27 94 32; /* #1B5E20 */
+
 	--color-primary: 51 153 255; /* Lighter blue, e.g., #3399FF */
 	--color-primary-light: 102 178 255; /* Even lighter blue, e.g., #66B2FF */
 	--color-on-primary: 255 255 255; /* White for contrast, e.g., #FFFFFF */
@@ -151,16 +157,16 @@
 	--color-on-primary-container: 0 102 204; /* Darker blue for contrast, e.g., #0066CC */
 
 	--color-secondary: 255 138 101; /* #FF8A65 */
-	--color-secondary-light: 255 171 145; /* Lighter shade of the secondary color, e.g., #FFAB91 */
+	--color-secondary-light: 255 171 145; /* #FFAB91 */
 	--color-on-secondary: 255 255 255; /* #FFFFFF */
 	--color-secondary-container: 255 204 188; /* #FFCCBC */
 	--color-on-secondary-container: 191 54 12; /* #BF360C */
 
-	--color-tertiary: 150 200 170; /* Muted green for variety, e.g., #96C8AA */
-	--color-tertiary-light: 180 230 200; /* Lighter shade of the tertiary color, e.g., #B4E6C8 */
-	--color-on-tertiary: 20 50 30; /* Darker green for contrast, e.g., #14321E */
-	--color-tertiary-container: 120 180 140; /* More distinct green for better differentiation, e.g., #78B48C */
-	--color-on-tertiary-container: 240 255 245; /* Lighter green for contrast, e.g., #F0FFF5 */
+	--color-tertiary: 102 102 255; /* #6666FF */
+	--color-tertiary-light: 153 153 255; /* #9999FF */
+	--color-on-tertiary: 255 255 255; /* #FFFFFF */
+	--color-tertiary-container: 204 204 255; /* #CCCCFF */
+	--color-on-tertiary-container: 51 51 153; /* #333399 */
 
 	--scroll-bar-color: 60 60 70; /* #3C3C46 */
 	--scroll-bar-color-hover: 70 70 80; /* #46464C */
@@ -188,26 +194,41 @@
 	
 }
 
-.theme-blue {
+.theme-purple {
+	--color-primary: 128 0 128; /* Purple, e.g., #800080 */
+	--color-primary-light: 186 85 211; /* Medium Orchid, e.g., #BA55D3 */
+	--color-on-primary: 255 255 255; /* White for contrast, e.g., #FFFFFF */
+	--color-primary-container: 216 191 216; /* Thistle, e.g., #D8BFD8 */
+	--color-on-primary-container: 75 0 130; /* Indigo, e.g., #4B0082 */
 
+	--color-secondary: 255 182 193; /* Light Pink, e.g., #FFB6C1 */
+	--color-secondary-light: 255 192 203; /* Pink, e.g., #FFC0CB */
+	--color-on-secondary: 0 0 0; /* Black for contrast, e.g., #000000 */
+	--color-secondary-container: 255 240 245; /* Lavender Blush, e.g., #FFF0F5 */
+	--color-on-secondary-container: 139 69 19; /* Saddle Brown, e.g., #8B4513 */
 
-	--color-primary: 0 255 255; /* Neon cyan, e.g., #00FFFF */
-	--color-primary-light: 0 255 127; /* Neon green, e.g., #00FF7F */
-	--color-on-primary: 0 0 0; /* Black for contrast, e.g., #000000 */
-	--color-primary-container: 0 255 255; /* Neon cyan, e.g., #00FFFF */
-	--color-on-primary-container: 0 0 0; /* Black for contrast, e.g., #000000 */
+	--color-tertiary: 147 112 219; /* Medium Purple, e.g., #9370DB */
+	--color-tertiary-light: 218 112 214; /* Orchid, e.g., #DA70D6 */
+	--color-on-tertiary: 255 255 255; /* White for contrast, e.g., #FFFFFF */
+	--color-tertiary-container: 230 230 250; /* Lavender, e.g., #E6E6FA */
+	--color-on-tertiary-container: 75 0 130; /* Indigo, e.g., #4B0082 */
+}
 
-	--color-secondary: 255 100 90; /* Softer red, e.g., #FF645A */
-	--color-secondary-light: 255 140 130; /* Softer light red, e.g., #FF8C82 */
-	--color-on-secondary: 255 255 255; /* #FFFFFF */
-	--color-secondary-container: 255 100 90; /* Softer red, e.g., #FF645A */
-	--color-on-secondary-container: 255 255 255; /* #FFFFFF */
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+	width: 7px;
+}
 
-	--color-tertiary: 100 220 140; /* Softer green, e.g., #64DC8C */
-	--color-tertiary-light: 150 240 180; /* Softer light green, e.g., #96F0B4 */
-	--color-on-tertiary: 255 255 255; /* #FFFFFF */
-	--color-tertiary-container: 100 220 140; /* Softer green, e.g., #64DC8C */
-	--color-on-tertiary-container: 255 255 255; /* #FFFFFF */
+::-webkit-scrollbar-track {
+	@apply bg-neutral-500/10;
+}
+
+::-webkit-scrollbar-thumb {
+	@apply bg-neutral-500/50 rounded-[6px] border-[3px] border-solid border-neutral-500/10;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-neutral-500/70;
 }
 
 

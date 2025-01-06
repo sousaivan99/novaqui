@@ -1,10 +1,10 @@
 <template>
 	<div
-		class="flex flex-col gap-2 bg-surface w-screen h-screen overflow-x-hidden overflow-y-auto p-5"
+		class="flex flex-col gap-2 bg-surface w-screen h-screen overflow-x-hidden overflow-y-auto p-5 "
 	>
 		<NuiModeSelector class="fixed top-3 right-3" />
 		<div>
-			<NuiChart :type="type" :data="chartData" />
+			<NuiChart :type="type" v-model="chartData" />
 		</div>
 		<!-- surfaces -->
 		<div class="flex flex-col gap-3">
@@ -130,6 +130,27 @@
 					Error
 				</div>
 			</div>
+
+			<span class="text-on-surface">Success colors</span>
+			<div
+				class="flex gap-3 items-center justify-between"
+			>
+				<div
+					class="w-full h-24 rounded-xl bg-success text-on-success flex items-center justify-center"
+				>
+					Success
+				</div>
+				<div
+					class="w-full h-24 rounded-xl bg-success-light text-on-success flex items-center justify-center"
+				>
+					Success
+				</div>
+				<div
+					class="w-full h-24 rounded-xl bg-success-container text-on-success-container flex items-center justify-center"
+				>
+					Success
+				</div>
+			</div>
 		</div>
 		<!-- input -->
 		<div class="flex items-center gap-3">
@@ -203,7 +224,26 @@
 
 <script setup lang="ts">
 const type = "line"
-const chartData = [2725, 2680, 2500, 2760, 2678]
+
+
+
+const chartData = ref(getRandomValues(5, 2000, 5000));
+
+let intervalId: number;
+
+function getRandomValues(count: number, min: number, max: number): number[] {
+	return Array.from({ length: count }, () => Math.floor(Math.random() * (max - min + 1)) + min);
+}
+
+onMounted(() => {
+	intervalId = setInterval(() => {
+		chartData.value = getRandomValues(5, 2000, 5000);
+	}, 5000);
+});
+
+onUnmounted(() => {
+	clearInterval(intervalId);
+});
 </script>
 
 <style scoped></style>

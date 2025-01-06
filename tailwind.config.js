@@ -26,6 +26,12 @@ export default {
         'error-container': 'rgb(var(--color-error-container) / <alpha-value>)',
         'on-error-container': 'rgb(var(--color-on-error-container) / <alpha-value>)',
 
+        'success': 'rgb(var(--color-success) / <alpha-value>)',
+        'success-light': 'rgb(var(--color-success-light) / <alpha-value>)',
+        'on-success': 'rgb(var(--color-on-success) / <alpha-value>)',
+        'success-container': 'rgb(var(--color-success-container) / <alpha-value>)',
+        'on-success-container': 'rgb(var(--color-on-success-container) / <alpha-value>)',
+
         'primary': 'rgb(var(--color-primary) / <alpha-value>)',
         'primary-light': 'rgb(var(--color-primary-light) / <alpha-value>)',
         'on-primary': 'rgb(var(--color-on-primary) / <alpha-value>)',

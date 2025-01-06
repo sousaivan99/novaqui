@@ -25,7 +25,6 @@ interface ChartProps {
 
 const {
 	type = "line",
-	demo,
 	data,
 	labels = [
 		"January",
@@ -38,7 +37,7 @@ const {
 } = defineProps<ChartProps>()
 
 const chart = ref(null)
-const chartData = ref(null)
+const chartData = defineModel()
 
 const getTheme = () => {
 	return localStorage.getItem("theme")
@@ -90,12 +89,6 @@ const getGradient = (ctx: CanvasRenderingContext2D) => {
 	return gradient
 }
 onMounted(() => {
-	if (demo) {
-		chartData.value = [100, 45, 72, 65, 110]
-	} else if (data.length > 0) {
-		chartData.value = data
-	}
-
 	if (chartData.value) {
 		nextTick(() => {
 			const ctx = chart.value.getContext("2d")
@@ -152,10 +145,12 @@ onMounted(() => {
 })
 
 watch(
-	() => data,
+	() => chartData.value,
 	(newData) => {
-		if (!demo && newData.length > 0) {
-			chartData.value = newData
+		if (chart.value && chart.value.chartInstance) {
+			const chartInstance = chart.value.chartInstance
+			chartInstance.data.datasets[0].data = newData
+			chartInstance.update()
 		}
 	},
 )
