@@ -25,7 +25,6 @@ interface ChartProps {
 
 const {
 	type = "line",
-	data,
 	labels = [
 		"January",
 		"February",
@@ -34,19 +33,35 @@ const {
 		"May",
 	],
 	label = "Value",
+	data = [],
 } = defineProps<ChartProps>()
 
 const chart = ref(null)
 const chartData = defineModel()
 
-const getTheme = () => {
-	return localStorage.getItem("theme")
+if (data.length > 0) {
+	chartData.value = data
 }
+
+watch(
+	() => data,
+	(newData) => {
+		if (newData.length > 0) {
+			chartData.value = newData
+		}
+	},
+)
 
 const getPrimaryColor = () => {
 	return `rgb(${getComputedStyle(
-		document.documentElement.classList.contains("dark")
-			? document.querySelector(".dark")
+		document.documentElement.className.includes(
+			"theme-",
+		) ||
+			document.documentElement.classList.contains(
+				"dark",
+			)
+			? document.querySelector("[class*='theme-']") ||
+					document.querySelector(".dark")
 			: document.documentElement,
 	)
 		.getPropertyValue("--color-primary")
@@ -62,6 +77,10 @@ const updateChartColors = () => {
 
 		chartInstance.data.datasets.forEach((dataset) => {
 			dataset.borderColor = getPrimaryColor()
+			dataset.backgroundColor =
+				type === "bar"
+					? getPrimaryColor()
+					: getGradient(ctx)
 		})
 		chartInstance.options.elements.line.backgroundColor =
 			getGradient(ctx)
@@ -78,7 +97,12 @@ const getGradient = (ctx: CanvasRenderingContext2D) => {
 		0,
 		height,
 	)
-	gradient.addColorStop(0, getPrimaryColor())
+	gradient.addColorStop(
+		0,
+		getPrimaryColor()
+			.replace("rgb", "rgba")
+			.replace(")", ", 0.5)"),
+	)
 
 	gradient.addColorStop(
 		1,
@@ -100,9 +124,12 @@ onMounted(() => {
 						{
 							label: label,
 							data: chartData.value,
-                            backgroundColor: type === "bar" ? getPrimaryColor() : getGradient(ctx),
+							backgroundColor:
+								type === "bar"
+									? getPrimaryColor()
+									: getGradient(ctx),
 							borderColor: getPrimaryColor(),
-							borderWidth: 1,
+							borderWidth: 2,
 						},
 					],
 				},

@@ -23,9 +23,11 @@ const {
 } = defineProps<InputProps>()
 
 const modelValue = defineModel<string>()
+
+const isDark = useIsDarkmode()
 </script>
 <template>
-	<div class="flex flex-col gap-[4px] w-full">
+	<div class="flex flex-col gap-[4px] w-full z-0">
 		<div>
 			<span class="label-sm">
 				<NuiLabel
@@ -49,7 +51,7 @@ const modelValue = defineModel<string>()
 				v-model="modelValue"
 				type="text"
 				:placeholder="placeholder"
-				class="rounded-[6px] body-xs w-full text-on-surface bg-surface-variant border py-[12px] border-outline h-[40px] hover:bg-surface-container-highest/70 focus:outline focus:outline-2 focus:outline-outline duration-100 transition-color ease-in-out"
+				class="rounded-[6px] body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline duration-100 transition-color ease-in-out"
 				:class="{
 					'pl-[35px]': icon,
 					'pl-[15px]': !icon,
@@ -57,7 +59,12 @@ const modelValue = defineModel<string>()
 					'pr-[15px]': !trailingIcon,
 
 					'border-error': error,
-					'border-gray-300 !bg-neutral-500 ': disabled,
+					'border-gray-300 bg-neutral-700/70 ':
+						disabled && isDark,
+					'border-gray-300 bg-neutral-300 ':
+						disabled && !isDark,
+					'bg-surface-variant hover:bg-surface-container-highest/70':
+						!disabled,
 				}"
 				:disabled="disabled"
 			/>

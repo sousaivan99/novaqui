@@ -1,18 +1,16 @@
 <template>
 	<div
 		@click="isOpen = !isOpen"
-		class="relative max-w-[250px] h-fit select-none bg-surface-container px-2 py-1 rounded-full border border-outline cursor-pointer flex items-center justify-between gap-3 hover:bg-outline/70 duration-100 transition-color ease-in-out"
+		class="relative max-w-[250px] h-7 select-none bg-surface px-3 py-1.5 rounded-lg border border-outline cursor-pointer flex items-center justify-between gap-3 hover:bg-surface-container duration-100 transition-color ease-in-out"
 	>
 		<div class="flex items-center gap-2 capitalize">
 			<div
-				class="w-3 h-3 border border-outline rounded-full"
-				:style="{
-					backgroundColor: themes[selectedTheme].color,
-				}"
+				class="w-3 h-3 rounded-full bg-primary"
+				:class="[themes[selectedTheme].class]"
 			></div>
-			<span class="text-on-surface body-sm">{{
-				themes[selectedTheme].name
-			}}</span>
+			<span class="text-on-surface body-xs">
+				{{ themes[selectedTheme].name }}
+			</span>
 		</div>
 		<Icon
 			name="mdi:chevron-down"
@@ -21,7 +19,9 @@
 		<Transition name="fade">
 			<div
 				v-if="isOpen"
-				class="absolute flex flex-col right-full -translate-x-2 z-[2] top-1/2 -translate-y-1/2 w-[250px] bg-surface-container-high rounded-xl p-2 border border-outline cursor-pointer duration-100 transition-color ease-in-out overflow-hidden"
+				ref="dropdown"
+				class="absolute flex flex-col gap-1 min-w-[150px] bg-surface shadow-md rounded-lg p-1 border border-outline cursor-pointer duration-100 transition-color ease-in-out overflow-hidden"
+				:style="dropdownStyle"
 			>
 				<div
 					v-for="(theme, index) in themes"
@@ -29,22 +29,20 @@
 					@click="handleSelectTheme(index)"
 					class="flex items-center gap-3 capitalize rounded-md cursor-pointer p-2"
 					:class="{
-						'bg-primary/70': selectedTheme === index,
+						'bg-primary-light': selectedTheme === index,
 						'hover:bg-surface-container-highest':
 							selectedTheme !== index,
+						[theme.class]: true,
 					}"
 				>
-					<div class="w-5 h-5 drop-shadow rounded-full">
-						<NuiThemesDefault
-							v-if="index === 0"
-							class="!fill-on-surface"
-						/>
-						<NuiThemesBlueberry v-if="index === 1" />
-					</div>
+					<div
+						class="w-3 h-3 rounded-full bg-primary shadow"
+					></div>
 					<span
 						class="text-on-surface body-xs"
 						:class="{
-							'text-white': selectedTheme === index,
+							'!text-on-primary':
+								selectedTheme === index,
 						}"
 						>{{ theme.name }}</span
 					>
@@ -55,27 +53,25 @@
 </template>
 <script setup lang="ts">
 const isOpen = ref(false)
+const dropdown = ref(null)
 
 const themes = [
 	{
 		name: "default",
-		class: "default",
-		color: "#7D54F3",
+		class: "theme-blue",
 	},
 	{
-		name: "Blueberry",
-		class: "theme-blue",
-		color: "#64A0FF",
+		name: "Purple",
+		class: "theme-purple",
 	},
 ]
 
-const selectedTheme = ref(
-	localStorage.getItem("Themes")
+const selectedTheme = ref(0)
+onMounted(() => {
+	selectedTheme.value = localStorage.getItem("Themes")
 		? parseInt(localStorage.getItem("Themes") as string)
-		: 0,
-)
-console.log("Selected Theme:", selectedTheme.value)
-
+		: 0
+})
 const handleSelectTheme = (index: number) => {
 	selectedTheme.value = index
 	localStorage.setItem("Themes", index.toString())
@@ -92,6 +88,32 @@ const applyTheme = () => {
 		.join(" ")
 	root.classList.add(themes[selectedTheme.value].class)
 }
+const dropdownStyle = computed(() => {
+	if (!dropdown.value) return {}
+	const { top, height, left, width } =
+		dropdown.value.getBoundingClientRect()
+	const windowHeight = window.innerHeight
+	const windowWidth = window.innerWidth
+	const dropdownHeight = dropdown.value.scrollHeight
+	const dropdownWidth = dropdown.value.scrollWidth
+	const isOverflowingY =
+		top + height + dropdownHeight > windowHeight
+	const isOverflowingX =
+		left + width + dropdownWidth > windowWidth
+
+	return {
+		top: isOverflowingY ? "auto" : "calc(100% + 3px)",
+		bottom: isOverflowingY
+			? "calc(100% + 3px)"
+			: "auto",
+		left: isOverflowingX ? "auto" : "0",
+		right: isOverflowingX ? "0" : "auto",
+	}
+})
+
+onMounted(() => {
+	applyTheme()
+})
 </script>
 
 <style scoped>
