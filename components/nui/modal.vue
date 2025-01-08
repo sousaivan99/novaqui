@@ -8,23 +8,44 @@ const { title, fullScreen = false } =
 	defineProps<Props>()
 
 const model = defineModel()
+const { layout} = useBreakpoints()
+
+
+const handleKeydown = (event: KeyboardEvent) => {
+	if (event.key === 'Escape') {
+		model.value = false
+	}
+}
+
+onMounted(() => {
+	window.addEventListener('keydown', handleKeydown)
+})
+
+onBeforeUnmount(() => {
+	window.removeEventListener('keydown', handleKeydown)
+})
+
 </script>
 
 <template>
+	<div
+		v-show="model"
+		class="fixed flex items-center bg-black/70 w-full h-full justify-center top-0 left-0 z-20 duration-150 transition-all ease-in-out modal-container"
+		:class="{
+			'opacity-0 scale-out-center': !model,
+			'opacity-100 ': model,
+		}"
+		@click.stop="model = false"
+	>
 	<transition name="modal">
-		<div
-			v-if="model"
-			class="fixed flex items-center w-full h-full justify-center top-0 left-0 z-10 duration-150 transition-all ease-in-out modal-container"
-			:class="{
-				'opacity-0 scale-out-center': !model,
-				'opacity-100 ': model,
-			}"
-		>
 			<div
+		v-if="model"
+
 				class="bg-surface-container flex flex-col shadow-xl border border-outline rounded-2xl overflow-hidden"
 				:class="{
-					'w-[700px] h-[450px]': !fullScreen,
-					' w-[99.5%] h-[98%]': fullScreen,
+					'min-w-[700px] max-w-[90%] h-[450px] max-h-[70%]': !fullScreen && layout !== 'mobile',
+					'w-full h-full rounded-none border-0': !fullScreen && layout === 'mobile',
+					' w-full h-full rounded-none border-0': fullScreen,
 				}"
 			>
 				<!-- header -->
@@ -60,16 +81,15 @@ const model = defineModel()
 					class="w-full h-fit flex items-center justify-end p-2 border-t border-outline"
 				>
 					<slot name="footer">
-						<button
-							class="w-fit h-fit px-4 py-1 bg-primary text-on-primary rounded-full"
-						>
-							add your button to #footer
-						</button>
+					<NuiButton type="filled" >
+						add your button to #footer
+					</NuiButton>
+
 					</slot>
 				</div>
 			</div>
-		</div>
-	</transition>
+		</transition>
+	</div>
 </template>
 
 <style scoped>

@@ -185,17 +185,17 @@
 	--color-primary-container: 153 204 255; /* Even lighter blue, e.g., #99CCFF */
 	--color-on-primary-container: 0 102 204; /* Darker blue for contrast, e.g., #0066CC */
 
-	--color-secondary: 255 138 101; /* #FF8A65 */
-	--color-secondary-light: 255 171 145; /* #FFAB91 */
+	--color-secondary: 102 102 255; /* #6666FF */
+	--color-secondary-light: 153 153 255; /* #9999FF */
 	--color-on-secondary: 255 255 255; /* #FFFFFF */
-	--color-secondary-container: 255 204 188; /* #FFCCBC */
-	--color-on-secondary-container: 191 54 12; /* #BF360C */
+	--color-secondary-container: 204 204 255; /* #CCCCFF */
+	--color-on-secondary-container: 51 51 153; /* #333399 */
 
-	--color-tertiary: 102 102 255; /* #6666FF */
-	--color-tertiary-light: 153 153 255; /* #9999FF */
+	--color-tertiary: 128 128 128; /* #808080 */
+	--color-tertiary-light: 192 192 192; /* #C0C0C0 */
 	--color-on-tertiary: 255 255 255; /* #FFFFFF */
-	--color-tertiary-container: 204 204 255; /* #CCCCFF */
-	--color-on-tertiary-container: 51 51 153; /* #333399 */
+	--color-tertiary-container: 224 224 224; /* #E0E0E0 */
+	--color-on-tertiary-container: 96 96 96; /* #606060 */
 }
 
 .theme-purple {
@@ -211,11 +211,11 @@
 	--color-secondary-container: 255 228 225; /* Misty Rose, e.g., #FFE4E1 */
 	--color-on-secondary-container: 219 112 147; /* Pale Violet Red, e.g., #DB7093 */
 
-	--color-tertiary: 255 165 0; /* Orange, e.g., #FFA500 */
-	--color-tertiary-light: 255 200 124; /* Light Orange, e.g., #FFC87C */
-	--color-on-tertiary: 255 255 255; /* White for contrast, e.g., #FFFFFF */
-	--color-tertiary-container: 255 239 213; /* Papaya Whip, e.g., #FFEFD5 */
-	--color-on-tertiary-container: 255 140 0; /* Dark Orange, e.g., #FF8C00 */
+	--color-tertiary: 128 128 128; /* #808080 */
+	--color-tertiary-light: 192 192 192; /* #C0C0C0 */
+	--color-on-tertiary: 255 255 255; /* #FFFFFF */
+	--color-tertiary-container: 224 224 224; /* #E0E0E0 */
+	--color-on-tertiary-container: 96 96 96; /* #606060 */
 }
 
 /* Scrollbar Styles */

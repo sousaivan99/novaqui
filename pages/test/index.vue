@@ -18,9 +18,9 @@
 				:key="index"
 				class="flex flex-col gap-3 w-full"
 			>
-				<span class="text-on-surface body-md">{{
-					section.title
-				}}</span>
+				<span class="text-on-surface body-md">
+					{{ section.title }}
+				</span>
 				<div
 					class="flex flex-col gap-3 items-center justify-between"
 				>
@@ -48,7 +48,7 @@
 						class="w-full flex items-center justify-between flex-col p-3 rounded-xl border border-outline/70 shadow-md"
 					>
 						<span class="body-xs text-on-surface"
-							>Chart {{ index }}</span
+							>Chart {{ index + 1 }}</span
 						>
 						<NuiChart
 							:type="type"
@@ -88,19 +88,180 @@
 				/>
 			</div>
 		</div>
-		<!-- toggle -->
+		<!-- btn / modals / toggle -->
 		<div
-			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
+			class="flex gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
 		>
-			<span class="text-on-surface body-md">
-				Toggles
-			</span>
-			<div class="flex items-center gap-3">
-				<NuiToggle name="toggle" size="sm" />
-				<NuiToggle name="toggle" size="md" />
-				<NuiToggle name="toggle" size="lg" disabled />
+			<!-- Buttons -->
+			<div
+				class="flex flex-col gap-3 w-full border border-outline p-3 rounded-xl shadow-md"
+			>
+				<span class="text-on-surface body-md">
+					Buttons
+				</span>
+				<div class="flex items-center gap-3 w-full">
+					<div class="flex flex-col gap-3 w-full">
+						<NuiButton type="filled">Filled</NuiButton>
+						<NuiButton type="outlined"
+							>Outlined</NuiButton
+						>
+						<NuiButton type="text">Text</NuiButton>
+						<NuiButton type="filled" disabled
+							>Disabled</NuiButton
+						>
+					</div>
+					<div class="flex flex-col gap-3 w-full">
+						<NuiButton type="filled" color="secondary"
+							>Filled</NuiButton
+						>
+						<NuiButton type="outlined" color="secondary"
+							>Outlined</NuiButton
+						>
+						<NuiButton type="text" color="secondary"
+							>Text</NuiButton
+						>
+						<NuiButton
+							type="filled"
+							disabled
+							color="secondary"
+							>Disabled</NuiButton
+						>
+					</div>
+					<div class="flex flex-col gap-3 w-full">
+						<NuiButton type="filled" color="tertiary"
+							>Filled</NuiButton
+						>
+						<NuiButton type="outlined" color="tertiary"
+							>Outlined</NuiButton
+						>
+						<NuiButton type="text" color="tertiary"
+							>Text</NuiButton
+						>
+						<NuiButton
+							type="filled"
+							disabled
+							color="tertiary"
+							>Disabled</NuiButton
+						>
+					</div>
+				</div>
+			</div>
+			<!-- Modals / toggle -->
+
+			<div
+				class="flex flex-col gap-3 w-full h-full justify-between"
+			>
+				<!-- Modals -->
+
+				<div
+					class="flex flex-col gap-3 w-full h-full border border-outline p-3 rounded-xl shadow-md"
+				>
+					<span class="text-on-surface body-md">
+						Modals
+					</span>
+					<div class="flex items-center gap-3">
+						<div class="flex flex-col gap-3 w-full">
+							<NuiButton
+								type="filled"
+								@click="isOpenModal1 = !isOpenModal1"
+								>Open Modal</NuiButton
+							>
+							<NuiModal
+								title="Modal Title"
+								v-model="isOpenModal1"
+							>
+								<template #body>
+									<div class="flex flex-col gap-3">
+										<NuiInput
+											iscon="material-symbols:person"
+											trailing-icon="material-symbols:person"
+											required
+											hint="test"
+										/>
+										<NuiInput
+											iscon="material-symbols:person"
+											trailing-icon="material-symbols:person"
+											error
+											hint="Error not filled"
+										/>
+										<NuiInput
+											icon="material-symbols:person"
+											required
+											hint="test"
+											disabled
+										/>
+									</div>
+								</template>
+								<template #footer>
+									<NuiButton type="filled"
+										>Save</NuiButton
+									>
+								</template>
+							</NuiModal>
+						</div>
+						<div class="flex flex-col gap-3 w-full">
+							<NuiButton
+								type="outlined"
+								color="secondary"
+								@click="isOpenModal2 = !isOpenModal2"
+								>Open fullScreen Modal</NuiButton
+							>
+							<NuiModal
+								title="Modal Title"
+								full-screen
+								v-model="isOpenModal2"
+							>
+								<template #body>
+									<div class="flex flex-col gap-3">
+										<NuiInput
+											iscon="material-symbols:person"
+											trailing-icon="material-symbols:person"
+											required
+											hint="test"
+										/>
+										<NuiInput
+											iscon="material-symbols:person"
+											trailing-icon="material-symbols:person"
+											error
+											hint="Error not filled"
+										/>
+										<NuiInput
+											icon="material-symbols:person"
+											required
+											hint="test"
+											disabled
+										/>
+									</div>
+								</template>
+								<template #footer>
+									<NuiButton type="filled"
+										>Save</NuiButton
+									>
+								</template>
+							</NuiModal>
+						</div>
+					</div>
+				</div>
+				<!-- toggle -->
+				<div
+					class="flex flex-col gap-3 w-full h-full border border-outline p-3 rounded-xl shadow-md"
+				>
+					<span class="text-on-surface body-md">
+						Toggles
+					</span>
+					<div class="flex items-center gap-3">
+						<NuiToggle name="toggle" size="sm" />
+						<NuiToggle name="toggle" size="md" />
+						<NuiToggle
+							name="toggle"
+							size="lg"
+							disabled
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
+
 		<!-- avatar -->
 		<div
 			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
@@ -153,6 +314,8 @@
 
 <script setup lang="ts">
 const type = "line"
+const isOpenModal1 = ref(false)
+const isOpenModal2 = ref(false)
 
 const sections = [
 	{
