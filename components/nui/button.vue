@@ -15,11 +15,11 @@ const {
 
 const buttonClass = computed(() => {
 	return {
-		"btn-filled hover:opacity-70": type === "filled",
-		"btn-outlined hover:opacity-70":
+		"btn-filled hover:opacity-[0.80]": type === "filled",
+		"btn-outlined hover:opacity-[0.80]":
 			type === "outlined",
-		"btn-text hover:opacity-70": type === "text",
-		"btn-disabled hover:opacity-70": disabled,
+		"btn-text hover:opacity-[0.80]": type === "text",
+		"btn-disabled hover:opacity-[0.80]": disabled,
 	}
 })
 const buttonColorClass = computed(() => {
@@ -34,7 +34,7 @@ const buttonColorClass = computed(() => {
 </script>
 <template>
 	<button
-		class="px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out"
+		class="h-[40px] px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out"
 		:class="[buttonClass, buttonColorClass]"
 		:disabled="disabled"
 	>
