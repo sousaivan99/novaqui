@@ -7,6 +7,7 @@
 		>
 			<NuiModeSelector />
 			<NuiThemeSelector />
+			<NuiToast />
 		</div>
 
 		<!-- colors -->
@@ -18,7 +19,7 @@
 				:key="index"
 				class="flex flex-col gap-3 w-full"
 			>
-				<span class="text-on-surface body-md">
+				<span class="text-on-surface label-md">
 					{{ section.title }}
 				</span>
 				<div
@@ -36,10 +37,17 @@
 				</div>
 			</div>
 		</div>
+		<!-- Typography -->
 		<div
 			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
 		>
-			<span class="text-on-surface body-md"
+			<Typo />
+		</div>
+		<!-- charts -->
+		<div
+			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
+		>
+			<span class="text-on-surface label-md"
 				>Charts</span
 			>
 			<div class="grid grid-cols-3 gap-3">
@@ -64,7 +72,7 @@
 		<div
 			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
 		>
-			<span class="text-on-surface body-md">
+			<span class="text-on-surface label-md">
 				Inputs
 			</span>
 			<div class="flex items-center gap-3">
@@ -94,54 +102,33 @@
 		>
 			<!-- Buttons -->
 			<div
-				class="flex flex-col gap-3 w-full border border-outline p-3 rounded-xl shadow-md"
+				class="flex flex-col gap-3 w-full border border-outline-variant p-3 rounded-xl shadow-md"
 			>
-				<span class="text-on-surface body-md">
+				<span class="text-on-surface label-md">
 					Buttons
 				</span>
-				<div class="flex items-center gap-3 w-full">
-					<div class="flex flex-col gap-3 w-full">
+				<div class="flex flex-col items-center gap-3 w-full">
+					<div class="flex justify-between items-center gap-3 w-full">
 						<NuiButton type="filled">Filled</NuiButton>
+						<NuiButton type="tonal">Tonal</NuiButton>
 						<NuiButton type="outlined"
 							>Outlined</NuiButton
 						>
 						<NuiButton type="text">Text</NuiButton>
+					</div>
+					<div class="flex justify-between items-center gap-3 w-full">
+						
 						<NuiButton type="filled" disabled
-							>Disabled</NuiButton
+							>filled</NuiButton
 						>
-					</div>
-					<div class="flex flex-col gap-3 w-full">
-						<NuiButton type="filled" color="secondary"
-							>Filled</NuiButton
+						<NuiButton type="tonal" disabled
+							>tonal</NuiButton
 						>
-						<NuiButton type="outlined" color="secondary"
-							>Outlined</NuiButton
+						<NuiButton type="outlined" disabled
+							>outlined</NuiButton
 						>
-						<NuiButton type="text" color="secondary"
-							>Text</NuiButton
-						>
-						<NuiButton
-							type="filled"
-							disabled
-							color="secondary"
-							>Disabled</NuiButton
-						>
-					</div>
-					<div class="flex flex-col gap-3 w-full">
-						<NuiButton type="filled" color="tertiary"
-							>Filled</NuiButton
-						>
-						<NuiButton type="outlined" color="tertiary"
-							>Outlined</NuiButton
-						>
-						<NuiButton type="text" color="tertiary"
-							>Text</NuiButton
-						>
-						<NuiButton
-							type="filled"
-							disabled
-							color="tertiary"
-							>Disabled</NuiButton
+						<NuiButton type="text" disabled
+							>text</NuiButton
 						>
 					</div>
 				</div>
@@ -156,7 +143,7 @@
 				<div
 					class="flex flex-col gap-3 w-full h-full border border-outline p-3 rounded-xl shadow-md"
 				>
-					<span class="text-on-surface body-md">
+					<span class="text-on-surface label-md">
 						Modals
 					</span>
 					<div class="flex items-center gap-3">
@@ -193,7 +180,7 @@
 									</div>
 								</template>
 								<template #footer>
-									<NuiButton type="filled"
+									<NuiButton type="tonal"
 										>Save</NuiButton
 									>
 								</template>
@@ -246,7 +233,7 @@
 				<div
 					class="flex flex-col gap-3 w-full h-full border border-outline p-3 rounded-xl shadow-md"
 				>
-					<span class="text-on-surface body-md">
+					<span class="text-on-surface label-md">
 						Toggles
 					</span>
 					<div class="flex items-center gap-3">
@@ -266,7 +253,7 @@
 		<div
 			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
 		>
-			<span class="text-on-surface body-md">
+			<span class="text-on-surface label-md">
 				Avatar
 			</span>
 			<div class="flex items-end gap-3">

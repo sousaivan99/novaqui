@@ -1,18 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Splash&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Splash&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.splash-regular {
-	font-family: "Splash", serif;
-	font-weight: 400;
-	font-style: normal;
-}
-.rubik {
-	font-family: "Rubik Glitch", serif;
-	font-weight: 400;
-	font-style: normal;
-}
 
 .title-xl {
 	font-family: "Noto", sans-serif;
@@ -133,8 +121,8 @@
 	--color-softer: 170 170 170; /* #828282 */
 	--color-on-hint: 255 255 255; /* #FFFFFF */
 
-	--border-color: 217 220 227; /* #D9DCE3 */
-	--border-color-variant: 70 70 70; /* #B4B4B4 */
+	--border-color: 230 233 239; /* #E6E9EF */
+	--border-color-variant: 200 200 200; /* #C8C8C8 */
 
 	--color-hover: 60 60 70; /* #3c3c46 */
 
@@ -169,8 +157,8 @@
 	--color-surface-container-high: 40 40 50; /* Darker gray with a subtle hint of blue, e.g., #282832 */
 	--color-surface-container-highest: 50 50 60; /* Even darker gray with a subtle hint of blue, e.g., #32323C */
 
-	--border-color: 91 91 91; /* #5B5B5B */
-	--border-color-variant: 110 110 110; /* #6E6E6E */
+	--border-color: 70 70 70; /* #464646 */
+	--border-color-variant: 50 50 50; /* #5A5A5A */
 
 	--scroll-bar-color: 60 60 70; /* #3C3C46 */
 	--scroll-bar-color-hover: 70 70 80; /* #46464C */
