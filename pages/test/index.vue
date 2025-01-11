@@ -7,7 +7,6 @@
 		>
 			<NuiModeSelector />
 			<NuiThemeSelector />
-			<NuiToast />
 		</div>
 
 		<!-- colors -->

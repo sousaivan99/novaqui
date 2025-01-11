@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { color } from "chart.js/helpers"
 
 interface Props {
 	type: "filled" | "tonal" | "outlined" | "text"
