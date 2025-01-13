@@ -8,6 +8,9 @@
 			<NuiModeSelector />
 			<NuiThemeSelector />
 		</div>
+		<div>
+			<NuiDatepicker label="Date" name="test" v-model="date"/>
+		</div>
 
 		<!-- colors -->
 		<div
@@ -299,9 +302,11 @@
 </template>
 
 <script setup lang="ts">
+
 const type = "line"
 const isOpenModal1 = ref(false)
 const isOpenModal2 = ref(false)
+const date = ref<string>(new Date().toISOString())
 
 const sections = [
 	{
