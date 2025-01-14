@@ -12,6 +12,7 @@
     "lint": "eslint ."
   },
   "devDependencies": {
+    "@formkit/auto-animate": "0.8.2",
     "@nuxt/eslint": "latest",
     "@nuxt/icon": "^1.8.1",
     "@nuxtjs/tailwindcss": "^6.12.2",

@@ -1,7 +1,13 @@
 <template>
+	<NuiToast />
 	<div
 		class="flex flex-col gap-2 bg-surface w-screen h-screen overflow-x-hidden overflow-y-auto p-2"
 	>
+	<NuiButton type="filled" @click="showToast('success')">Add success Toast</NuiButton>
+	<NuiButton type="filled" @click="showToast('info')">Add info Toast</NuiButton>
+	<NuiButton type="filled" @click="showToast('warning')">Add warning Toast</NuiButton>
+	<NuiButton type="filled" @click="showToast('error')">Add error Toast</NuiButton>
+
 		<div
 			class="fixed bottom-3 right-3 flex items-center gap-2 justify-between z-10"
 		>
@@ -307,6 +313,13 @@ const type = "line"
 const isOpenModal1 = ref(false)
 const isOpenModal2 = ref(false)
 const date = ref<string>(new Date().toISOString())
+
+const { addToast } = useToast()
+
+function showToast(type:string) {
+  addToast('This is a toast message!', type);
+}
+
 
 const sections = [
 	{
