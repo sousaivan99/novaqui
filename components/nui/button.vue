@@ -13,7 +13,7 @@ const isDarkMode = useIsDarkmode()
 
 </script>
 <template>
-	<div>
+	<div class="w-fit h-fit">
 		<button
 			v-if="type === 'filled'"
 			class="body-md px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out bg-primary text-on-primary hover:bg-primary/80 outline-offset-2 outline-primary/80 disabled:bg-primary/50 disabled:cursor-not-allowed"
