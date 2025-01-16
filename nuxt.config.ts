@@ -7,7 +7,7 @@ const currentDir = dirname(fileURLToPath(import.meta.url));
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/icon", "@formkit/auto-animate"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/icon", "@formkit/auto-animate/nuxt"],
   css: [join(currentDir, "./assets/css/tailwind.css")],
   imports: {
   dirs: [join(currentDir, "./assets/icons"), join(currentDir, "./assets/sounds")],

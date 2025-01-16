@@ -1,5 +1,4 @@
 <script setup>
-import autoAnimate from '@formkit/auto-animate'
 const { toasts, removeToast } = useToast()
 const toastContainer = ref()
 let intervalId = null
@@ -43,12 +42,9 @@ onBeforeUnmount(() => {
 	}
 })
 
-onMounted(() => {
-  autoAnimate(toastContainer.value) // thats it!
-})
 </script>
 <template>
-	<div ref="toastContainer" class="toast-container">
+	<div ref="toastContainer" v-auto-animate="{ duration: 150,disrespectUserMotionPreference: false }" class="toast-container">
 		<div
 			v-for="toast in toasts"
 			:key="toast.id"
@@ -83,9 +79,12 @@ onMounted(() => {
 				class="flex items-center justify-center p-1 rounded-full duration-150 transition-colors ease-in-out"
 				:class="{
 					'hover:bg-blue-300': toast.type === 'info',
-					'hover:bg-success-light': toast.type === 'success',
-					'hover:bg-amber-300': toast.type === 'warning',
-					'hover:bg-error-light': toast.type === 'error',
+					'hover:bg-success-light':
+						toast.type === 'success',
+					'hover:bg-amber-300':
+						toast.type === 'warning',
+					'hover:bg-error-light':
+						toast.type === 'error',
 				}"
 			>
 				<Icon name="material-symbols:close-rounded" />
