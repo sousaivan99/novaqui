@@ -1,12 +1,12 @@
 <script setup lang="ts">
 interface SelectOption {
   name: string
-  link: string
+  slug: string
   icon?: string
   children?: {
     label: string
     icon: string
-    link: string
+    slug: string
   }[]
 }
 

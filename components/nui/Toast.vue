@@ -44,60 +44,67 @@ onBeforeUnmount(() => {
 
 </script>
 <template>
-	<div ref="toastContainer" v-auto-animate="{ duration: 150,disrespectUserMotionPreference: false }" class="toast-container">
-		<div
-			v-for="toast in toasts"
-			:key="toast.id"
-			class="toast flex items-center justify-between gap-4"
-			:class="toast.type"
+	<div ref="toastContainer" class="toast-container">
+		<TransitionGroup
+			name="toast"
+			tag="div"
+			appear
 		>
-			<Icon
-				v-if="toast.type === 'info'"
-				name="material-symbols:info"
-			/>
-			<Icon
-				v-if="toast.type === 'success'"
-				name="material-symbols:check"
-			/>
-			<Icon
-				v-if="toast.type === 'warning'"
-				name="material-symbols:warning-rounded"
-			/>
-			<Icon
-				v-if="toast.type === 'error'"
-				name="material-symbols:error"
-			/>
-
-			{{ toast.message }}
 			<div
-				class="progress-bar"
-				:style="{ width: toast.progress + '%' }"
-			></div>
-
-			<button
-				@click="removeToast(toast.id)"
-				class="flex items-center justify-center p-1 rounded-full duration-150 transition-colors ease-in-out"
-				:class="{
-					'hover:bg-blue-300': toast.type === 'info',
-					'hover:bg-success-light':
-						toast.type === 'success',
-					'hover:bg-amber-300':
-						toast.type === 'warning',
-					'hover:bg-error-light':
-						toast.type === 'error',
-				}"
+				v-for="toast in toasts"
+				:key="toast.id"
+				class="toast flex items-center justify-between gap-4"
+				:class="toast.type"
 			>
-				<Icon name="material-symbols:close-rounded" />
-			</button>
-		</div>
+				<Icon
+					v-if="toast.type === 'info'"
+					name="material-symbols:info"
+				/>
+				<Icon
+					v-if="toast.type === 'success'"
+					name="material-symbols:check"
+				/>
+				<Icon
+					v-if="toast.type === 'warning'"
+					name="material-symbols:warning-rounded"
+				/>
+				<Icon
+					v-if="toast.type === 'error'"
+					name="material-symbols:error"
+				/>
+
+				{{ toast.message }}
+				<div
+					class="progress-bar"
+					:style="{ width: toast.progress + '%' }"
+				></div>
+
+				<button
+					@click="removeToast(toast.id)"
+					class="flex items-center justify-center p-1 rounded-full duration-150 transition-colors ease-in-out"
+					:class="{
+						'hover:bg-blue-300': toast.type === 'info',
+						'hover:bg-success-light':
+							toast.type === 'success',
+						'hover:bg-amber-300':
+							toast.type === 'warning',
+						'hover:bg-error-light':
+							toast.type === 'error',
+					}"
+				>
+					<Icon name="material-symbols:close-rounded" />
+				</button>
+			</div>
+		</TransitionGroup>
 	</div>
 </template>
 <style scoped>
 .toast-container {
 	position: fixed;
-	top: 10px;
+	bottom: 10px;
 	right: 10px;
 	z-index: 1000;
+	max-width: 400px;
 }
 
 .toast {
@@ -139,5 +146,17 @@ button {
 	color: inherit;
 	margin-left: 10px;
 	cursor: pointer;
+}
+
+.toast-enter-active,
+.toast-leave-active {
+	transition: all 0.15s ease;
+}
+
+.toast-enter-from,
+.toast-leave-to {
+	transform: translateX(100%);
+	opacity: 0;
+	scale: 0.9;
 }
 </style>

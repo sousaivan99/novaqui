@@ -6,8 +6,6 @@ interface ModeSelectorProps {
 const {size = 'sm', variant = 'none'} = defineProps<ModeSelectorProps>()
 
 const colorMode = useColorMode()
-console.log(colorMode.value);
-
 
 const isDarkMode = computed(() => colorMode.value === 'dark')
 
