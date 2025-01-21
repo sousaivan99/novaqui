@@ -1,74 +1,39 @@
 <script setup lang="ts">
-// Utility functions for handling localStorage
-const setTheme = (theme) => {
-	localStorage.setItem("theme", theme)
+interface ModeSelectorProps {
+	size?: 'xs' | 'sm' | 'md' | 'lg'
+	variant?: 'none' | 'outlined'
 }
+const {size = 'sm', variant = 'none'} = defineProps<ModeSelectorProps>()
 
-const getTheme = () => {
-	return localStorage.getItem("theme")
-}
+const colorMode = useColorMode()
+console.log(colorMode.value);
 
-const isDarkMode = ref(false) // Default to false
 
-if (typeof window !== "undefined") {
-	const savedTheme = getTheme()
-	if (
-		savedTheme === "dark" ||
-		(!savedTheme &&
-			window.matchMedia("(prefers-color-scheme: dark)")
-				.matches)
-	) {
-		isDarkMode.value = true
-	} else {
-		isDarkMode.value = false
-	}
-}
+const isDarkMode = computed(() => colorMode.value === 'dark')
 
 const toggleMode = () => {
-	isDarkMode.value = !isDarkMode.value
-	if (isDarkMode.value) {
-		document.documentElement.classList.add("dark")
-		setTheme("dark")
-	} else {
-		document.documentElement.classList.remove("dark")
-		setTheme("light")
-	}
+	colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+	
 }
 
-// Initialize the mode based on localStorage
-onMounted(() => {
-	const savedTheme = getTheme()
-	if (savedTheme) {
-		isDarkMode.value = savedTheme === "dark"
-		if (isDarkMode.value) {
-			document.documentElement.classList.add("dark")
-		} else {
-			document.documentElement.classList.remove("dark")
-		}
-	}
-})
-
-useHead({
-	script: [
-		{
-			children: `if (localStorage.theme === "dark" || (!('theme' in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-                document.documentElement.classList.add("dark");
-
-        } else {
-            document.documentElement.removeAttribute("data-theme")
-                document.documentElement.classList.remove("dark");
-
-        }`,
-		},
-	],
-})
 </script>
 
 <template>
 	<div
 		@click="toggleMode"
-		class="bg-surface border border-outline hover:bg-surface-container-highest hover:border hover:border-outline/70 cursor-pointer rounded-lg p-[0.35rem] w-7 h-7 flex items-center justify-center"
+		:class="[
+			'border border-outline hover:bg-surface-container-highest hover:border hover:border-outline/70 cursor-pointer rounded-lg p-[0.35rem] flex items-center justify-center',
+			{
+				'w-7 h-7': size === 'xs',
+				'w-8 h-8': size === 'sm', 
+				'w-9 h-9': size === 'md',
+				'w-10 h-10': size === 'lg',
+				'border-transparent': variant === 'none',
+				'border-outline': variant === 'outlined',
+			}
+		]"
 	>
+	<ClientOnly>
 		<Icon
 			v-if="isDarkMode"
 			name="line-md:moon-filled-alt-to-sunny-filled-loop-transition"
@@ -79,6 +44,7 @@ useHead({
 			name="line-md:sunny-filled-loop-to-moon-filled-loop-transition"
 			class="w-full h-full text-slate-500"
 		/>
+	</ClientOnly>
 	</div>
 </template>
 

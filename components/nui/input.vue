@@ -2,6 +2,7 @@
 interface InputProps {
 	label?: string
 	subLabel?: string
+	type?: string
 	icon?: string
 	trailingIcon?: string
 	disabled?: boolean
@@ -13,7 +14,8 @@ interface InputProps {
 
 const {
 	label = "label text here",
-	subLabel = "Sub label here",
+	subLabel = "",
+	type = "text",
 	icon,
 	trailingIcon,
 	disabled,
@@ -27,7 +29,7 @@ const modelValue = defineModel<string>()
 const isDark = useIsDarkmode()
 </script>
 <template>
-	<div class="flex flex-col gap-[4px] w-full z-0">
+	<div class="flex flex-col gap-[4px] w-full z-0 ">
 		<div>
 			<span class="label-sm">
 				<NuiLabel
@@ -37,7 +39,7 @@ const isDark = useIsDarkmode()
 				/>
 			</span>
 		</div>
-		<div class="w-full h-fit relative">
+		<div class="w-full h-fit relative ">
 			<div
 				v-if="icon"
 				class="absolute left-[10px] top-1/2 -translate-y-1/2 flex items-center w-fit h-fit"
@@ -49,9 +51,9 @@ const isDark = useIsDarkmode()
 			</div>
 			<input
 				v-model="modelValue"
-				type="text"
+				:type="type"
 				:placeholder="placeholder"
-				class="rounded-[6px] body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline duration-100 transition-color ease-in-out"
+				class="rounded-[6px]  body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline duration-100 transition-color ease-in-out"
 				:class="{
 					'pl-[35px]': icon,
 					'pl-[15px]': !icon,
@@ -91,4 +93,6 @@ const isDark = useIsDarkmode()
 	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

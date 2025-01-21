@@ -1,59 +1,42 @@
 <script setup lang="ts">
 
 interface Props {
-	type: "filled" | "tonal" | "outlined" | "text"
+	type?: "submit" | "button" | "reset"
+	mode: "filled" | "outlined" | "text"
+	variant?: "primary" | "tonal" | "normal"
 	disabled?: boolean
+	class?: string
 }
 
-const {
-	type = "filled",
-	disabled = false,
-} = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+	type: "button",
+	mode: "filled",
+	variant: "primary",
+	disabled: false,
+	class: "w-fit h-fit"
+})
 const isDarkMode = useIsDarkmode()
 
 </script>
 <template>
-	<div class="w-fit h-fit">
+	<div :class="props.class">
 		<button
-			v-if="type === 'filled'"
-			class="body-md px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out bg-primary text-on-primary hover:bg-primary/80 outline-offset-2 outline-primary/80 disabled:bg-primary/50 disabled:cursor-not-allowed"
-			:disabled="disabled"
-		>
-			<slot></slot>
-		</button>
-
-		<button
-			v-if="type === 'tonal'"
-			class="body-md px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out bg-secondary-container shadow text-on-secondary-container hover:bg-secondary-container/80 outline-offset-2 outline-secondary-container/80   disabled:cursor-not-allowed"
+			:type="props.type"
+			class="w-full body-md px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out outline-offset-2 disabled:cursor-not-allowed"
 			:class="{
-				'disabled:bg-secondary-container/50 disabled:text-neutral-100/80': isDarkMode && disabled,
-				'disabled:bg-[#1D1B20]/10 disabled:text-[#1D1B20]/80': !isDarkMode && disabled,
+				'bg-primary text-on-primary hover:bg-primary/80 outline-primary/80 disabled:bg-primary/50': props.mode === 'filled' && props.variant === 'primary',
+				'bg-secondary-container shadow text-on-secondary-container hover:bg-secondary-container/80 outline-secondary-container/80 disabled:bg-secondary-container/50': props.mode === 'filled' && props.variant === 'tonal',
+				'border border-primary text-primary hover:bg-primary/10 outline-offset-4 disabled:border-neutral-900/70': props.mode === 'outlined' && props.variant === 'primary',
+				'border border-secondary-light text-secondary-light hover:bg-secondary-container/10 outline-offset-4 disabled:border-neutral-900/70': props.mode === 'outlined' && props.variant === 'tonal',
+				'text-primary hover:bg-primary/10 outline-offset-4': props.mode === 'text' && props.variant === 'primary',
+				'text-secondary-light hover:bg-secondary-container/10 outline-offset-4': props.mode === 'text' && props.variant === 'tonal',
+				'text-on-surface hover:bg-on-surface/10 outline-offset-4': props.mode === 'text' && props.variant === 'normal',
+				'disabled:bg-secondary-container/50 disabled:text-neutral-900/70': isDarkMode && props.disabled,
+				'disabled:bg-[#1D1B20]/10 disabled:text-[#1D1B20]/80': !isDarkMode && props.disabled,
+				'disabled:text-neutral-900/70': props.mode === 'outlined' && props.disabled,
+				'disabled:text-neutral-900/70 ': props.mode === 'text' && props.disabled
 			}"
-			:disabled="disabled"
-		>
-			<slot></slot>
-		</button>
-
-		<button
-			v-if="type === 'outlined'"
-			class="body-md px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out border border-primary text-primary hover:bg-primary/10 outline-offset-4  disabled:bg-neutral-300/50   disabled:border-neutral-900/70 disabled:cursor-not-allowed"
-			:class="{
-				'disabled:text-neutral-100/80': isDarkMode && disabled,
-				'disabled:text-neutral-700/80': !isDarkMode && disabled,
-			}"
-			:disabled="disabled"
-		>
-			<slot></slot>
-		</button>
-
-		<button
-			v-if="type === 'text'"
-			class="body-md px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out  text-primary hover:bg-primary/10 outline-offset-4   disabled:bg-neutral-300/50  disabled:cursor-not-allowed"
-			:class="{
-				'disabled:text-neutral-100/80': isDarkMode && disabled,
-				'disabled:text-neutral-700/80': !isDarkMode && disabled,
-			}"
-			:disabled="disabled"
+			:disabled="props.disabled"
 		>
 			<slot></slot>
 		</button>
@@ -61,32 +44,5 @@ const isDarkMode = useIsDarkmode()
 </template>
 
 <style scoped>
-.btn-filled {
-	@apply !text-white;
-}
-
-.btn-outlined {
-	@apply !bg-transparent border;
-}
-
-.btn-text {
-	@apply !bg-transparent text-white;
-}
-
-.btn-disabled {
-	@apply opacity-50 cursor-not-allowed;
-}
-
-.btn-primary {
-	@apply bg-primary border-primary text-primary;
-}
-
-.btn-secondary {
-	@apply bg-secondary border-secondary text-secondary;
-}
-
-.btn-tertiary {
-	@apply bg-tertiary border-tertiary text-tertiary;
-}
 
 </style>

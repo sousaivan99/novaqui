@@ -15,16 +15,18 @@
     "@formkit/auto-animate": "^0.8.2",
     "@nuxt/eslint": "latest",
     "@nuxt/icon": "^1.8.1",
-    "@nuxtjs/tailwindcss": "^6.12.2",
+    "@nuxtjs/tailwindcss": "6.12.2",
     "eslint": "^9.15.0",
-    "nuxt": "^3.14.159",
-    "typescript": "^5.6.3",
+    "nuxt": "^3.15.1",
+    "typescript": "^5.7.3",
     "vue": "latest"
   },
   "dependencies": {
+    "@nuxtjs/color-mode": "^3.5.2",
     "chart.js": "^4.4.7"
   },
   "trustedDependencies": [
-    "@parcel/watcher"
+    "@parcel/watcher",
+    "esbuild"
   ]
 }

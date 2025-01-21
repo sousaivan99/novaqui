@@ -3,13 +3,24 @@
 	<div
 		class="flex flex-col gap-2 bg-surface w-screen h-screen overflow-x-hidden overflow-y-auto p-2"
 	>
-	<div class="w-fit flex items-center gap-3">
-
-		<NuiButton type="filled" @click="showToast('success')">Add success Toast</NuiButton>
-		<NuiButton type="tonal" @click="showToast('info')">Add info Toast</NuiButton>
-		<NuiButton type="outlined" @click="showToast('warning')">Add warning Toast</NuiButton>
-		<NuiButton type="text" @click="showToast('error')">Add error Toast</NuiButton>
-	</div>
+		<div class="w-fit flex items-center gap-3">
+			<NuiButton
+				type="filled"
+				@click="showToast('success')"
+				>Add success Toast</NuiButton
+			>
+			<NuiButton type="filled" variant="tonal" @click="showToast('info')"
+				>Add info Toast</NuiButton
+			>
+			<NuiButton
+				type="outlined"
+				@click="showToast('warning')"
+				>Add warning Toast</NuiButton
+			>
+			<NuiButton type="text" @click="showToast('error')"
+				>Add error Toast</NuiButton
+			>
+		</div>
 
 		<div
 			class="fixed bottom-3 right-3 flex items-center gap-2 justify-between z-10"
@@ -18,7 +29,11 @@
 			<NuiThemeSelector />
 		</div>
 		<div>
-			<NuiDatepicker label="Date" name="test" v-model="date"/>
+			<NuiDatepicker
+				label="Date"
+				name="test"
+				v-model="date"
+			/>
 		</div>
 
 		<!-- colors -->
@@ -113,33 +128,113 @@
 		>
 			<!-- Buttons -->
 			<div
-				class="flex flex-col gap-3 w-full border border-outline-variant p-3 rounded-xl shadow-md"
+				class="flex flex-col gap-3 w-full border border-outline p-3 rounded-xl shadow-md"
 			>
-				<span class="text-on-surface label-md">
-					Buttons
-				</span>
-				<div class="flex flex-col items-center gap-3 w-full">
-					<div class="flex justify-between items-center gap-3 w-full">
-						<NuiButton type="filled">Filled</NuiButton>
-						<NuiButton type="tonal">Tonal</NuiButton>
-						<NuiButton type="outlined"
-							>Outlined</NuiButton
+				<span class="text-on-surface label-md"
+					>Button Showcase</span
+				>
+
+				<div
+					class="flex flex-col gap-2 text-on-surface"
+				>
+					<h3 class="text-on-surface label-md">Filled Buttons</h3>
+					<div class="grid grid-cols-2 gap-2">
+						<NuiButton type="filled" variant="primary"
+							>Filled Primary</NuiButton
 						>
-						<NuiButton type="text">Text</NuiButton>
+						<NuiButton
+							type="filled"
+							variant="primary"
+							disabled
+							>Filled Disabled</NuiButton
+						>
+						<NuiButton type="filled" variant="tonal"
+							>Filled Tonal</NuiButton
+						>
+						<NuiButton
+							type="filled"
+							variant="tonal"
+							disabled
+							>Filled Tonal Disabled</NuiButton
+						>
+						<NuiButton type="text" variant="normal"
+							>text Normal</NuiButton
+						>
+						<NuiButton
+							type="text"
+							variant="normal"
+							disabled
+							>Disabled</NuiButton
+						>
 					</div>
-					<div class="flex justify-between items-center gap-3 w-full">
-						
-						<NuiButton type="filled" disabled
-							>filled</NuiButton
+				</div>
+
+				<div
+					class="flex flex-col gap-2 text-on-surface"
+				>
+					<h3 class="text-on-surface label-md">Outlined Buttons</h3>
+					<div class="grid grid-cols-2 gap-2">
+						<NuiButton type="outlined" variant="primary"
+							>Outlined Primary</NuiButton
 						>
-						<NuiButton type="tonal" disabled
-							>tonal</NuiButton
+						<NuiButton
+							type="outlined"
+							variant="primary"
+							disabled
+							>Outlined Primary Disabled</NuiButton
 						>
-						<NuiButton type="outlined" disabled
-							>outlined</NuiButton
+						<NuiButton type="outlined" variant="tonal"
+							>Outlined Tonal</NuiButton
 						>
-						<NuiButton type="text" disabled
-							>text</NuiButton
+						<NuiButton
+							type="outlined"
+							variant="tonal"
+							disabled
+							>Outlined Tonal Disabled</NuiButton
+						>
+						<NuiButton type="text" variant="normal"
+							>Text Normal</NuiButton
+						>
+						<NuiButton
+							type="outlined"
+							variant="normal"
+							disabled
+							>Outlined Normal Disabled</NuiButton
+						>
+					</div>
+				</div>
+
+				<div
+					class="flex flex-col gap-2 text-on-surface"
+				>
+					<h3 class="text-on-surface label-md">Text Buttons</h3>
+					<div class="grid grid-cols-2 gap-2">
+						<NuiButton type="text" variant="primary"
+							>Text Primary</NuiButton
+						>
+						<NuiButton
+							type="text"
+							variant="primary"
+							disabled
+							>Text Primary Disabled</NuiButton
+						>
+						<NuiButton type="text" variant="tonal"
+							>Text Tonal</NuiButton
+						>
+						<NuiButton
+							type="text"
+							variant="tonal"
+							disabled
+							>Text Tonal Disabled</NuiButton
+						>
+						<NuiButton type="text" variant="normal"
+							>Text Normal</NuiButton
+						>
+						<NuiButton
+							type="text"
+							variant="normal"
+							disabled
+							>Text Normal Disabled</NuiButton
 						>
 					</div>
 				</div>
@@ -191,7 +286,7 @@
 									</div>
 								</template>
 								<template #footer>
-									<NuiButton type="tonal"
+									<NuiButton type="filled" variant="primary"
 										>Save</NuiButton
 									>
 								</template>
@@ -311,7 +406,6 @@
 </template>
 
 <script setup lang="ts">
-
 const type = "line"
 const isOpenModal1 = ref(false)
 const isOpenModal2 = ref(false)
@@ -319,10 +413,9 @@ const date = ref<string>(new Date().toISOString())
 
 const { addToast } = useToast()
 
-function showToast(type:string) {
-  addToast('This is a toast message!', type);
+function showToast(type: string) {
+	addToast("This is a toast message!", type)
 }
-
 
 const sections = [
 	{
@@ -463,7 +556,7 @@ const labels = [
 	"Dec",
 ]
 
-let intervalId: number
+let intervalId: ReturnType<typeof setInterval>
 
 function getRandomValues(
 	count: number,
