@@ -24,7 +24,7 @@ const isDarkMode = useIsDarkmode()
 			:type="props.type"
 			class="w-full body-md px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out outline-offset-2 disabled:cursor-not-allowed"
 			:class="{
-				'bg-primary text-on-primary hover:bg-primary/80 outline-primary/80 disabled:bg-primary/50': props.mode === 'filled' && props.variant === 'primary',
+				'bg-primary text-on-primary hover:bg-primary/80 outline-primary/80 disabled:bg-tertiary/50': props.mode === 'filled' && props.variant === 'primary',
 				'bg-secondary-container shadow text-on-secondary-container hover:bg-secondary-container/80 outline-secondary-container/80 disabled:bg-secondary-container/50': props.mode === 'filled' && props.variant === 'tonal',
 				'border border-primary text-primary hover:bg-primary/10 outline-offset-4 disabled:border-neutral-900/70': props.mode === 'outlined' && props.variant === 'primary',
 				'border border-secondary-light text-secondary-light hover:bg-secondary-container/10 outline-offset-4 disabled:border-neutral-900/70': props.mode === 'outlined' && props.variant === 'tonal',
@@ -32,7 +32,7 @@ const isDarkMode = useIsDarkmode()
 				'text-secondary-light hover:bg-secondary-container/10 outline-offset-4': props.mode === 'text' && props.variant === 'tonal',
 				'text-on-surface hover:bg-on-surface/10 outline-offset-4': props.mode === 'text' && props.variant === 'normal',
 				'disabled:bg-secondary-container/50 disabled:text-neutral-900/70': isDarkMode && props.disabled,
-				'disabled:bg-[#1D1B20]/10 disabled:text-[#1D1B20]/80': !isDarkMode && props.disabled,
+				'disabled:bg-[#1D1B20]/10 disabled:text-gray-900/80': !isDarkMode && props.disabled,
 				'disabled:text-neutral-900/70': props.mode === 'outlined' && props.disabled,
 				'disabled:text-neutral-900/70 ': props.mode === 'text' && props.disabled
 			}"

@@ -77,16 +77,16 @@ const updateChartColors = () => {
 		const chartInstance = chart.value.chartInstance
 		const ctx = chart.value.getContext("2d")
 
-		chartInstance.data.datasets.forEach((dataset) => {
-			dataset.borderColor = getPrimaryColor()
-			dataset.backgroundColor =
-				type === "bar"
+		if (!['pie', 'doughnut'].includes(type)) {
+			chartInstance.data.datasets.forEach((dataset) => {
+				dataset.borderColor = getPrimaryColor()
+				dataset.backgroundColor = type === "bar"
 					? getPrimaryColor()
 					: getGradient(ctx)
-		})
-		chartInstance.options.elements.line.backgroundColor =
-			getGradient(ctx)
-		chartInstance.update()
+			})
+			chartInstance.options.elements.line.backgroundColor = getGradient(ctx)
+			chartInstance.update()
+		}
 	}
 }
 
@@ -114,6 +114,23 @@ const getGradient = (ctx: CanvasRenderingContext2D) => {
 	)
 	return gradient
 }
+
+const getRandomColors = (count: number) => {
+	const colors = [
+		'#FF6B6B', // Coral red
+		'#4ECDC4', // Turquoise
+		'#45B7D1', // Sky blue
+		'#96CEB4', // Sage green
+		'#FFEEAD', // Cream yellow
+		'#D4A5A5', // Dusty rose
+		'#9B5DE5', // Purple
+		'#F15BB5', // Pink
+		'#00BBF9', // Bright blue
+		'#00F5D4'  // Mint
+	];
+	return colors.slice(0, count);
+}
+
 onMounted(() => {
 	if (chartData.value) {
 		nextTick(() => {
@@ -126,12 +143,15 @@ onMounted(() => {
 						{
 							label: label,
 							data: chartData.value,
-							backgroundColor:
-								type === "bar"
+							backgroundColor: ['pie', 'doughnut'].includes(type)
+								? getRandomColors(chartData.value.length)
+								: type === 'bar'
 									? getPrimaryColor()
 									: getGradient(ctx),
-							borderColor: getPrimaryColor(),
-							borderWidth: 2,
+							borderColor: ['pie', 'doughnut'].includes(type)
+								? 'transparent'
+								: getPrimaryColor(),
+							borderWidth: ['pie', 'doughnut'].includes(type) ? 0 : 2,
 						},
 					],
 				},
@@ -139,7 +159,9 @@ onMounted(() => {
 					elements: {
 						line: {
 							fill: true,
-							backgroundColor: getGradient(ctx),
+							backgroundColor: type === 'bar'
+								? getPrimaryColor()
+								: getGradient(ctx),
 							tension: 0.4,
 						},
 					},
@@ -150,7 +172,8 @@ onMounted(() => {
 							intersect: false,
 						},
 						legend: {
-							display: false,
+							display: ['pie', 'doughnut'].includes(type),
+							position: 'bottom',
 						},
 					},
 					maintainAspectRatio: false,

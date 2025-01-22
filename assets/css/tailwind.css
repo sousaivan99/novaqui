@@ -113,9 +113,9 @@
 	--color-on-surface-variant: 33 37 45; /* #21255B */
 	--color-surface-variant: 245 245 250; /* #DCE6F0 */
 	--color-surface: 255 255 255; /* #FFFFFF */
-	--color-surface-container: 245 247 250; /* #F5F7FA */
-	--color-surface-container-high: 235 238 243; /* #EBEEF3 */
-	--color-surface-container-highest: 225 229 236; /* #E1E5EC */
+	--color-surface-container: 242 245 250; /* #F2F5FA */
+	--color-surface-container-high: 230 235 243; /* #E6EBF3 */
+	--color-surface-container-highest: 218 225 236; /* #DAE1EC */
 
 	--color-soft: 130 130 130; /* #828282 */
 	--color-softer: 170 170 170; /* #828282 */

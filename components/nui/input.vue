@@ -13,7 +13,7 @@ interface InputProps {
 }
 
 const {
-	label = "label text here",
+	label = "",
 	subLabel = "",
 	type = "text",
 	icon,
@@ -30,7 +30,7 @@ const isDark = useIsDarkmode()
 </script>
 <template>
 	<div class="flex flex-col gap-[4px] w-full z-0 ">
-		<div>
+		<div v-if="label">
 			<span class="label-sm">
 				<NuiLabel
 					:label="label"
