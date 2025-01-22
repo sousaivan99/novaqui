@@ -21,6 +21,7 @@ interface ChartProps {
 	labels?: string[]
 	label?: string
 	data?: number[]
+	showAxes?: boolean
 }
 
 const {
@@ -34,6 +35,7 @@ const {
 	],
 	label = "Value",
 	data = [],
+	showAxes = false,
 } = defineProps<ChartProps>()
 
 const chart = ref(null)
@@ -138,7 +140,7 @@ onMounted(() => {
 						line: {
 							fill: true,
 							backgroundColor: getGradient(ctx),
-							tension: 0.4, // Smooth the line
+							tension: 0.4,
 						},
 					},
 					responsive: true,
@@ -154,11 +156,13 @@ onMounted(() => {
 					maintainAspectRatio: false,
 					scales: {
 						x: {
+							display: showAxes,
 							grid: {
 								display: false,
 							},
 						},
 						y: {
+							display: showAxes,
 							grid: {
 								display: false,
 							},

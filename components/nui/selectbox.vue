@@ -54,7 +54,7 @@ onUnmounted(() => {
           :name="modelValue.icon" 
           class="min-w-3 min-h-3"
         />
-        <span class="label-sm">{{ modelValue?.name || 'Select an option' }}</span>
+        <span class="label-sm select-none">{{ modelValue?.name || 'Select an option' }}</span>
       </div>
       <Icon
         name="material-symbols:keyboard-arrow-down-rounded"
@@ -65,7 +65,7 @@ onUnmounted(() => {
     <Transition name="selectbox">
       <div
         v-if="isOpen"
-        class="absolute flex flex-col gap-1 z-10 w-full mt-1 p-2 rounded-xl border border-outline bg-surface-container-high shadow-lg"
+        class="absolute select-none flex flex-col gap-1 z-10 w-full mt-1 p-2 rounded-xl border border-outline bg-surface-container-high shadow-lg"
     >
       <div
         v-for="option in options" 
