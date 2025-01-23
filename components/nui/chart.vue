@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="w-full h-full flex flex-col gap-2">
 		<canvas v-if="chartData" ref="chart"></canvas>
 		<p v-else>No Data</p>
 	</div>
@@ -22,6 +22,7 @@ interface ChartProps {
 	label?: string
 	data?: number[]
 	showAxes?: boolean
+	legendPosition?: 'left' | 'right' | 'bottom'
 }
 
 const {
@@ -36,6 +37,7 @@ const {
 	label = "Value",
 	data = [],
 	showAxes = false,
+	legendPosition = 'right',
 } = defineProps<ChartProps>()
 
 const chart = ref(null)
@@ -110,7 +112,7 @@ const getGradient = (ctx: CanvasRenderingContext2D) => {
 		1,
 		getPrimaryColor()
 			.replace("rgb", "rgba")
-			.replace(")", ", 0.001)"),
+			.replace(")", ", 0.05)"),
 	)
 	return gradient
 }
@@ -152,6 +154,8 @@ onMounted(() => {
 								? 'transparent'
 								: getPrimaryColor(),
 							borderWidth: ['pie', 'doughnut'].includes(type) ? 0 : 2,
+							borderRadius: type === 'bar' ? 8 : undefined,
+							borderSkipped: false,
 						},
 					],
 				},
@@ -162,7 +166,11 @@ onMounted(() => {
 							backgroundColor: type === 'bar'
 								? getPrimaryColor()
 								: getGradient(ctx),
-							tension: 0.4,
+							tension: 0.5,
+						},
+						bar: {
+							borderRadius: 8,
+							borderSkipped: false,
 						},
 					},
 					responsive: true,
@@ -173,7 +181,7 @@ onMounted(() => {
 						},
 						legend: {
 							display: ['pie', 'doughnut'].includes(type),
-							position: 'bottom',
+							position: legendPosition,
 						},
 					},
 					maintainAspectRatio: false,

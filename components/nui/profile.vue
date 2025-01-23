@@ -57,6 +57,7 @@
 							<NuiToggle
 								name="darkmode"
 								v-model="isDarkMode"
+								@change="toggleMode"
 							/>
 						</div>
 						<div
@@ -99,9 +100,6 @@ const { user, function: userFunction } =
 
 const isOpen = ref(false)
 
-const isDarkMode = ref(false) // Default to false
-const router = useRouter()
-
 const toggle = () => {
 	isOpen.value = !isOpen.value
 }
@@ -123,73 +121,16 @@ onBeforeUnmount(() => {
 	)
 })
 
-// logout
+const colorMode = useColorMode()
 
-// toggle darkmode
-// Utility functions for handling localStorage
-const setTheme = (theme) => {
-	localStorage.setItem("theme", theme)
+const isDarkMode = computed(() => colorMode.value === 'dark')
+
+const toggleMode = () => {
+	colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+	
 }
 
-const getTheme = () => {
-	return localStorage.getItem("theme")
-}
 
-if (typeof window !== "undefined") {
-	const savedTheme = getTheme()
-	if (
-		savedTheme === "dark" ||
-		(!savedTheme &&
-			window.matchMedia("(prefers-color-scheme: dark)")
-				.matches)
-	) {
-		isDarkMode.value = true
-	} else {
-		isDarkMode.value = false
-	}
-}
-
-watch(isDarkMode, (value) => {
-	if (value) {
-		document.documentElement.classList.add("dark")
-		setTheme("dark")
-	} else {
-		document.documentElement.classList.remove("dark")
-		setTheme("light")
-	}
-})
-
-// Initialize the mode based on localStorage
-onMounted(() => {
-	if (typeof window !== "undefined") {
-		const savedTheme = getTheme()
-		if (savedTheme) {
-			isDarkMode.value = savedTheme === "dark"
-			if (isDarkMode.value) {
-				document.documentElement.classList.add("dark")
-			} else {
-				document.documentElement.classList.remove(
-					"dark",
-				)
-			}
-		}
-	}
-})
-
-useHead({
-	script: [
-		{
-			children: `if (localStorage.theme === "dark" || (!('theme' in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-                document.documentElement.classList.add("dark");
-
-        } else {
-            document.documentElement.removeAttribute("data-theme")
-                document.documentElement.classList.remove("dark");
-
-        }`,
-		},
-	],
-})
 </script>
 
 <style scoped>

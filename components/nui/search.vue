@@ -6,20 +6,31 @@
           v-if="!modelValue" 
           name="heroicons:magnifying-glass-20-solid"
           class="w-[21px] h-[21px] text-on-surface-variant"
+          role="img"
+          aria-label="Search icon"
         />
         <Icon
           v-else
           name="heroicons:x-mark-20-solid" 
           class="w-[21px] h-[21px] text-on-surface-variant cursor-pointer"
           @click="$emit('update:modelValue', '')"
+          role="button"
+          aria-label="Clear search"
+          tabindex="0"
+          @keyup.enter="$emit('update:modelValue', '')"
         />
       </div>
       <input
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
-        type="text"
-        class="rounded-xl body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline duration-100 transition-color ease-in-out pl-[35px] pr-[35px] bg-surface hover:bg-surface-variant"
+        type="search"
+        class="rounded-xl body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline focus:bg-surface-container-highest hover:bg-surface-container-high active:bg-surface-container-highest disabled:bg-surface-container disabled:text-on-surface/40 duration-100 transition-all ease-in-out pl-[35px] pr-[35px] bg-surface"
         v-bind="$attrs"
+        role="searchbox"
+        :aria-label="$attrs['aria-label'] || 'Search'"
+        :aria-placeholder="$attrs.placeholder"
+        :aria-expanded="false"
+        :aria-autocomplete="$attrs['aria-autocomplete'] || 'list'"
       />
       <div 
         v-if="trailingIcon"
@@ -29,6 +40,8 @@
           <Icon
             :name="trailingIcon"
             class="w-[21px] h-[21px] text-on-surface-variant"
+            role="img"
+            :aria-label="$attrs['trailing-icon-label'] || 'Trailing icon'"
           />
         </slot>
       </div>
