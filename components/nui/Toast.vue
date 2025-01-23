@@ -105,6 +105,7 @@ onBeforeUnmount(() => {
 	right: 10px;
 	z-index: 1000;
 	max-width: 400px;
+	height: fit-content;
 }
 
 .toast {

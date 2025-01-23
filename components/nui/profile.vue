@@ -1,25 +1,18 @@
 <template>
 	<div
-		class="w-full min-h-[25px] flex items-center justify-center relative profile-cont"
+		class="w-fit h-fit flex items-center justify-center relative profile-cont"
 	>
 		<div
-			class="w-full min-h-[25px] flex items-center justify-center relative profile-cont gap-2 hover:bg-surface-container p-1 rounded-full"
+			class="w-fit h-fit flex items-center cursor-pointer justify-center relative profile-cont gap-2 hover:bg-surface-container p-1 rounded-full"
 			@click.stop="toggle"
 		>
-			<div
-				class="w-[32px] h-[32px] border border-outline rounded-full cursor-pointer flex items-center justify-center overflow-hidden transition-all duration-100 ease-in-out"
-			>
-				<img
-					v-if="first_name"
-					:src="src"
-					:alt="first_name"
-					class="w-full h-full rounded-full"
-				/>
-				<div
-					v-else
-					class="w-full h-full bg-surface-container"
-				/>
-			</div>
+			<NuiAvatar
+				:src="
+					user?.src ||
+					`https://ui-avatars.com/api/?background=random&name=${user?.name}`
+				"
+				:bottomStatus="user?.status"
+			/>
 		</div>
 		<Transition name="fade">
 			<div
@@ -29,24 +22,22 @@
 				<!-- Profile -->
 				<div class="w-full h-fit p-2">
 					<div
-						class="w-full h-fit px-3 py-4 bg-primary rounded-lg flex items-center gap-4"
+						class="w-full h-fit px-3 py-4 bg-primary/20 rounded-lg flex items-center gap-4"
 					>
-						<div
-							class="max-w-[32px] max-h-[32px] flex items-center justify-center rounded-full"
-						>
-							<img
-								:src="src"
-								:alt="first_name"
-								class="w-full h-full rounded-full"
-							/>
-						</div>
+						<NuiAvatar
+							:src="
+								user?.src ||
+								`https://ui-avatars.com/api/?background=random&name=${user?.name}`
+							"
+							:bottomStatus="user?.status"
+						/>
 						<div class="w-full flex flex-col">
-							<span class="body-sm text-white">
-								{{ first_name }} {{ last_name }}
+							<span class="body-sm text-on-surface">
+								{{ user?.name }}
 							</span>
 							<span
-								class="body-xs opacity-70 text-white"
-								>{{ email }}</span
+								class="body-xs opacity-70 text-on-surface"
+								>{{ user?.email }}</span
 							>
 						</div>
 					</div>
@@ -93,21 +84,18 @@
 </template>
 
 <script setup lang="ts">
-interface User {
-	first_name?: string
-	last_name?: string
-	src: string
-	email?: string
+interface Props {
+	user?: User
 	function?: () => void
 }
+interface User {
+	name?: string
+	src?: string
+	email?: string
+}
 
-const {
-	first_name,
-	last_name,
-	src,
-	email,
-	function: userFunction,
-} = defineProps<User>()
+const { user, function: userFunction } =
+	defineProps<Props>()
 
 const isOpen = ref(false)
 

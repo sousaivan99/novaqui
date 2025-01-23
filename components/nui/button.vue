@@ -6,6 +6,7 @@ interface Props {
 	variant?: "primary" | "tonal" | "normal"
 	disabled?: boolean
 	class?: string
+	icon?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -13,7 +14,8 @@ const props = withDefaults(defineProps<Props>(), {
 	mode: "filled",
 	variant: "primary",
 	disabled: false,
-	class: "w-fit h-fit"
+	class: "w-fit h-fit",
+	icon: ""
 })
 const isDarkMode = useIsDarkmode()
 
@@ -22,7 +24,7 @@ const isDarkMode = useIsDarkmode()
 	<div :class="props.class">
 		<button
 			:type="props.type"
-			class="w-full body-md px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out outline-offset-2 disabled:cursor-not-allowed"
+			class="w-full flex items-center justify-center gap-1 body-md px-4 py-1 relative overflow-hidden rounded-full transition-all duration-150 ease-in-out outline-offset-2 disabled:cursor-not-allowed"
 			:class="{
 				'bg-primary text-on-primary hover:bg-primary/80 outline-primary/80 disabled:bg-tertiary/50': props.mode === 'filled' && props.variant === 'primary',
 				'bg-secondary-container shadow text-on-secondary-container hover:bg-secondary-container/80 outline-secondary-container/80 disabled:bg-secondary-container/50': props.mode === 'filled' && props.variant === 'tonal',
@@ -38,6 +40,21 @@ const isDarkMode = useIsDarkmode()
 			}"
 			:disabled="props.disabled"
 		>
+			<Icon v-if="props.icon" :name="props.icon" size="24" :class="{
+				'text-on-primary': props.mode === 'filled' && props.variant === 'primary' && !props.disabled,
+				'text-on-secondary-container': props.mode === 'filled' && props.variant === 'tonal' && !props.disabled,
+				'text-primary': props.mode === 'outlined' && props.variant === 'primary' && !props.disabled,
+				'text-secondary-light': props.mode === 'outlined' && props.variant === 'tonal' && !props.disabled,
+				'text-primary': props.mode === 'text' && props.variant === 'primary' && !props.disabled,
+				'text-secondary-light': props.mode === 'text' && props.variant === 'tonal' && !props.disabled,
+				'text-on-surface': props.mode === 'text' && props.variant === 'normal' && !props.disabled,
+				'text-neutral-900/70': props.mode === 'filled' && isDarkMode && props.disabled,
+				'text-gray-900/80': props.mode === 'filled' && !isDarkMode && props.disabled,
+				'text-neutral-900/70': props.mode === 'outlined' && isDarkMode && props.disabled,
+				'text-gray-900/80': props.mode === 'outlined' && !isDarkMode && props.disabled,
+				'text-neutral-900/70': props.mode === 'text' && isDarkMode && props.disabled,
+				'text-gray-900/80': props.mode === 'text' && !isDarkMode && props.disabled
+			}"/>
 			<slot></slot>
 		</button>
 	</div>

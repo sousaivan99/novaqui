@@ -15,7 +15,7 @@ type TopStatus =
     | "remove"
     | "notification";
 
-type BottomStatus = "online" | "offline" | "busy" | "away" | "company";
+type BottomStatus = "active" | "inactive" | "busy" | "away" | "company";
 
 const { size = "md" } = defineProps<{
     size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
@@ -56,6 +56,14 @@ const bottomStatusSizeClasses = computed(() => ({
     "3xl": "w-8 h-8 -bottom-0.5 -right-2.5",
     "4xl": "w-10 h-10 -bottom-0.5 -right-3",
 }));
+
+const statusClasses = computed(() => ({
+    active: "text-success",
+    inactive: "text-error",
+    busy: "text-red-500",
+    away: "text-amber-500",
+    company: "text-primary",
+}));
 </script>
 
 <template>
@@ -76,7 +84,7 @@ const bottomStatusSizeClasses = computed(() => ({
         <RemoveIcon v-if="topStatus === 'remove'" :class="`${topStatusSizeClasses[size]} absolute text-white`" />
 
         <StatusIcon v-if="bottomStatus" :status="bottomStatus"
-            :class="`${bottomStatusSizeClasses[size]} absolute text-white`" />
+            :class="`${bottomStatusSizeClasses[size]} absolute  ${statusClasses[bottomStatus]} `" />
     </div>
 </template>
 

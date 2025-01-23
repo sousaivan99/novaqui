@@ -18,7 +18,7 @@
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         type="text"
-        class="rounded-lg body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline duration-100 transition-color ease-in-out pl-[35px] pr-[35px] bg-surface hover:bg-surface-variant"
+        class="rounded-xl body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline duration-100 transition-color ease-in-out pl-[35px] pr-[35px] bg-surface hover:bg-surface-variant"
         v-bind="$attrs"
       />
       <div 
