@@ -1,7 +1,6 @@
 <template>
-	<NuiToast />
 	<div
-		class="flex flex-col gap-2 bg-surface w-screen h-screen overflow-x-hidden overflow-y-auto p-2"
+		class="flex flex-col gap-2  w-full h-full overflow-x-hidden overflow-y-auto p-2"
 	>
 		<div class="w-fit flex items-center gap-3">
 			<NuiButton

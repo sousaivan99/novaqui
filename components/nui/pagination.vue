@@ -36,7 +36,7 @@ const changePage = (page) => {
 
     <!-- Previous button -->
     <NuiButton
-      mode="text"
+      mode="filled"
       variant="normal"
       icon="material-symbols:chevron-left"
       :disabled="!pagination.prev_page_url"
