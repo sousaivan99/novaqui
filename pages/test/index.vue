@@ -37,7 +37,7 @@
 
 		<!-- colors -->
 		<div
-			class="flex gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
+			class="flex gap-3 w-full bg-surface-container p-3 rounded-md border border-outline shadow-md"
 		>
 			<div
 				v-for="(section, index) in sections"
@@ -53,7 +53,7 @@
 					<div
 						v-for="(item, idx) in section.items"
 						:key="idx"
-						:class="`w-full h-24 rounded-xl ${item.class} flex items-center justify-center border border-outline shadow-md text-balance`"
+						:class="`w-full h-24 rounded-md ${item.class} flex items-center justify-center border border-outline shadow-md text-balance`"
 					>
 						<span class="text-center">{{
 							item.text
@@ -64,13 +64,13 @@
 		</div>
 		<!-- Typography -->
 		<div
-			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
+			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-md border border-outline shadow-md"
 		>
 			<Typo />
 		</div>
 		<!-- charts -->
 		<div
-			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
+			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-md border border-outline shadow-md"
 		>
 			<span class="text-on-surface label-md"
 				>Charts</span
@@ -78,7 +78,7 @@
 			<div class="grid grid-cols-3 gap-3">
 				<template v-for="(chart, index) in chartData">
 					<div
-						class="w-full flex items-center justify-between flex-col p-3 rounded-xl border border-outline/70 shadow-md"
+						class="w-full flex items-center justify-between flex-col p-3 rounded-md border border-outline/70 shadow-md"
 					>
 						<span class="body-xs text-on-surface"
 							>Chart {{ index + 1 }}</span
@@ -95,7 +95,7 @@
 		</div>
 		<!-- input -->
 		<div
-			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
+			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-md border border-outline shadow-md"
 		>
 			<span class="text-on-surface label-md">
 				Inputs
@@ -123,11 +123,11 @@
 		</div>
 		<!-- btn / modals / toggle -->
 		<div
-			class="flex gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
+			class="flex gap-3 w-full bg-surface-container p-3 rounded-md border border-outline shadow-md"
 		>
 			<!-- Buttons -->
 			<div
-				class="flex flex-col gap-3 w-full border border-outline p-3 rounded-xl shadow-md"
+				class="flex flex-col gap-3 w-full border border-outline p-3 rounded-md shadow-md"
 			>
 				<span class="text-on-surface label-md"
 					>Button Showcase</span
@@ -246,7 +246,7 @@
 				<!-- Modals -->
 
 				<div
-					class="flex flex-col gap-3 w-full h-full border border-outline p-3 rounded-xl shadow-md"
+					class="flex flex-col gap-3 w-full h-full border border-outline p-3 rounded-md shadow-md"
 				>
 					<span class="text-on-surface label-md">
 						Modals
@@ -336,7 +336,7 @@
 				</div>
 				<!-- toggle -->
 				<div
-					class="flex flex-col gap-3 w-full h-full border border-outline p-3 rounded-xl shadow-md"
+					class="flex flex-col gap-3 w-full h-full border border-outline p-3 rounded-md shadow-md"
 				>
 					<span class="text-on-surface label-md">
 						Toggles
@@ -356,7 +356,7 @@
 
 		<!-- avatar -->
 		<div
-			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-xl border border-outline shadow-md"
+			class="flex flex-col gap-3 w-full bg-surface-container p-3 rounded-md border border-outline shadow-md"
 		>
 			<span class="text-on-surface label-md">
 				Avatar

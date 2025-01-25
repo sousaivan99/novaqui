@@ -8,6 +8,7 @@ interface Props {
   modelValue: number;
   options: Tab[];
   class?: string;
+  hasLabel?: boolean;
 }
 
 interface Emits {
@@ -24,29 +25,38 @@ const updateValue = (index: number) => {
 
 <template>
   <div
-    class="flex items-center gap-2 p-2 rounded-xl bg-surface relative"
+    class="flex items-center gap-2  h-10 rounded-md p-1 relative bg-surface-container shadow z-0 overflow-hidden"
     :class="props.class"
   >
-    <div
-      class="absolute bg-surface-container rounded-md transition-all duration-150 ease-in-out"
-      :style="{
-        left: `${(modelValue * 100) / options.length + 4}%`,
-        width: `${100 / options.length - 8}%`,
-        height: 'calc(100% - 16px)',
-      }"
-    />
     <button
       v-for="(option, index) in options"
       :key="option.name"
-      class="flex items-center gap-2 px-3 py-1 rounded-md transition-colors duration-150 relative z-10 flex-1"
+      class="flex items-center justify-center gap-2 px-4 py-2 h-full rounded-md transition-colors duration-150 relative z-10"
       :class="{
-        'text-on-surface': modelValue === index,
-        'hover:bg-surface-container/50 text-on-surface': modelValue !== index,
+        'text-on-surface bg-surface-container-high': modelValue === index,
+        'hover:bg-surface-container-highest text-on-surface/70': modelValue !== index,
       }"
       @click="updateValue(index)"
     >
-      <Icon v-if="option.icon" :name="option.icon" />
-      <span class="label-lg">{{ option.name }}</span>
+      <Icon 
+        v-if="option.icon" 
+        :name="option.icon" 
+        size="18" 
+        :class="{
+          'text-on-surface': modelValue === index,
+          'text-on-surface/70': modelValue !== index
+        }"
+      />
+      <span 
+        v-if="props.hasLabel" 
+        class="label-sm"
+        :class="{
+          'text-on-surface': modelValue === index,
+          'text-on-surface/70': modelValue !== index
+        }"
+      >
+        {{ option.name }}
+      </span>
     </button>
   </div>
 </template>

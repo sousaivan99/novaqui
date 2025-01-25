@@ -1,26 +1,31 @@
 <script setup lang="ts">
+
+
 interface SelectOption {
   name: string
-  slug: string
+  slug?: string
   icon?: string
+  value?: string | number
   children?: {
     label: string
     icon: string
-    slug: string
+    value: string
   }[]
 }
 
 export interface SelectboxProps {
-  modelValue: SelectOption | null
+  modelValue: string | null
   options: SelectOption[]
 }
 
 const props = defineProps<SelectboxProps>()
 const emit = defineEmits(['update:modelValue'])
+const selectedOption = ref(props.options.find(item => item.value === props.modelValue)?.name)
 
 const isOpen = ref(false)
 
-const handleSelect = (option: SelectOption) => {
+const handleSelect = (option: string) => {
+  selectedOption.value = props.options.find(item => item.value === option)?.name
   emit('update:modelValue', option)
   isOpen.value = false
 }
@@ -43,18 +48,18 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative w-full">
+  <div class="relative w-full h-fit">
     <div
       @click="isOpen = !isOpen"
-      class="flex items-center justify-between min-w-[230px] px-4 py-2 rounded-lg border border-outline bg-surface-container-high text-on-surface cursor-pointer"
+      class="flex items-center h-10 justify-between w-full gap-4 px-4 py-2 rounded-md border border-outline bg-surface-container-high text-on-surface cursor-pointer"
     >
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-4">
         <Icon 
-          v-if="modelValue?.icon" 
-          :name="modelValue.icon" 
+          v-if="options.find(item => item.value === modelValue)?.icon" 
+          :name="options.find(item => item.value === modelValue)?.icon" 
           class="min-w-3 min-h-3"
         />
-        <span class="label-sm select-none">{{ modelValue?.name || 'Select an option' }}</span>
+        <span class="label-sm select-none whitespace-nowrap">{{ selectedOption || 'Select an option' }}</span>
       </div>
       <Icon
         name="material-symbols:keyboard-arrow-down-rounded"
@@ -65,14 +70,14 @@ onUnmounted(() => {
     <Transition name="selectbox">
       <div
         v-if="isOpen"
-        class="absolute select-none flex flex-col gap-1 z-10 w-full mt-1 p-2 rounded-xl border border-outline bg-surface-container-high shadow-lg"
+        class="absolute select-none flex flex-col gap-1 z-10 w-full mt-1 p-2 rounded-md border border-outline bg-surface-container-high shadow-lg"
     >
       <div
         v-for="option in options" 
-        :key="option.link"
-        @click="handleSelect(option)"
-        class="flex items-center gap-2 p-2 rounded-lg text-on-surface hover:bg-surface-container-highest cursor-pointer"
-        :class="{ ' bg-surface-variant': option.name === modelValue?.name }"
+        :key="option.name"
+        @click="handleSelect(option.value)"
+        class="flex items-center gap-2 p-2 rounded-md text-on-surface hover:bg-surface-container-highest cursor-pointer"
+        :class="{ ' bg-surface-variant': option.value === options.find(item => item.name === selectedOption)?.value }"
       >
         <Icon 
           v-if="option.icon" 

@@ -56,5 +56,14 @@ const changePage = (page) => {
       :disabled="!pagination.next_page_url"
       @click="changePage(pagination.current_page + 1)"
     />
+
+    <!-- Last page button (only show when not on last page) -->
+    <NuiButton
+      mode="text"
+      variant="normal"
+      icon="material-symbols:last-page"
+      @click="changePage(pagination.last_page)"
+      :disabled="pagination.current_page === pagination.last_page"
+    />
   </div>
 </template>

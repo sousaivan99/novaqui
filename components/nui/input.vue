@@ -10,6 +10,7 @@ interface InputProps {
 	error?: boolean
 	required?: boolean
 	placeholder?: string
+	autocomplete?: string
 }
 
 const {
@@ -22,6 +23,7 @@ const {
 	error,
 	hint,
 	required,
+	autocomplete = "off",
 } = defineProps<InputProps>()
 
 const modelValue = defineModel<string>()
@@ -53,6 +55,7 @@ const isDark = useIsDarkmode()
 				v-model="modelValue"
 				:type="type"
 				:placeholder="placeholder"
+				:autocomplete="autocomplete"
 				class="rounded-[6px]  body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline duration-100 transition-color ease-in-out"
 				:class="{
 					'pl-[35px]': icon,

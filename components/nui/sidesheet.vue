@@ -24,7 +24,7 @@
 				<!-- Changed v-if to v-show for the sidesheet -->
 				<div
 					v-show="isOpen"
-					class="w-full overflow-hidden flex flex-col h-full bg-surface-container-high rounded-lg border border-outline/20 shadow-lg"
+					class="w-full overflow-hidden flex flex-col h-full bg-surface-container-high rounded-md border border-outline/20 shadow-lg"
 				>
 					<div
 						class="flex px-3 h-[60px] items-center justify-between border-b border-outline title-xs"

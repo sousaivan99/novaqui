@@ -33,7 +33,6 @@ onBeforeUnmount(() => {
 			'opacity-0 scale-out-center': !model,
 			'opacity-100 ': model,
 		}"
-		
 	></div>
 	<transition name="modal">
 		<div
@@ -51,17 +50,24 @@ onBeforeUnmount(() => {
 					' w-full h-full rounded-none border-0':
 						fullScreen,
 				}"
-				 @click.stop
+				@click.stop
 			>
 				<!-- header -->
 				<div
 					class="w-full flex items-center justify-between p-3 border-b border-outline"
 				>
-					<span class="label-lg text-on-surface">{{
-						title
-							? title
-							: "add title to prop named: title"
-					}}</span>
+					<div class="flex items-center gap-4">
+						<h1
+							class="text-2xl font-bold text-on-surface"
+						>
+							Novaqui
+						</h1>
+						<span class="label-lg text-on-surface">{{
+							title
+								? title
+								: "add title to prop named: title"
+						}}</span>
+					</div>
 
 					<div
 						@click="model = false"
@@ -77,19 +83,7 @@ onBeforeUnmount(() => {
 				<div
 					class="flex flex-col w-full h-full p-4 text-on-surface overflow-x-hidden overflow-y-auto"
 				>
-					<slot name="body">
-						add content to #body
-					</slot>
-				</div>
-				<!-- footer -->
-				<div
-					class="w-full h-fit flex items-center justify-end p-3 border-t border-outline"
-				>
-					<slot name="footer">
-						<NuiButton type="filled">
-							add your button to #footer
-						</NuiButton>
-					</slot>
+					<slot> add content to #body </slot>
 				</div>
 			</div>
 		</div>

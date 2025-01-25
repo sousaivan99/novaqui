@@ -1,7 +1,7 @@
 <template>
 	<div
 		@click="isOpen = !isOpen"
-		class="relative max-w-[250px] h-7 select-none bg-surface px-3 py-1.5 rounded-lg border border-outline cursor-pointer flex items-center justify-between gap-3 hover:bg-surface-container duration-100 transition-color ease-in-out"
+		class="relative max-w-[250px] h-7 select-none  px-3 py-1.5 rounded-md border border-outline cursor-pointer flex items-center justify-between gap-3 hover:bg-surface-container duration-100 transition-color ease-in-out"
 	>
 		<div class="flex items-center gap-2 capitalize">
 			<div
@@ -20,7 +20,7 @@
 			<div
 				v-if="isOpen"
 				ref="dropdown"
-				class="absolute flex flex-col gap-1 min-w-[150px] bg-surface shadow-md rounded-lg p-1 border border-outline cursor-pointer duration-100 transition-color ease-in-out overflow-hidden"
+				class="absolute flex flex-col gap-1 min-w-[150px] bg-surface-container-high shadow-md rounded-md p-1 border border-outline cursor-pointer duration-100 transition-color ease-in-out overflow-hidden"
 				:style="dropdownStyle"
 			>
 				<div
@@ -29,7 +29,7 @@
 					@click="handleSelectTheme(index)"
 					class="flex items-center gap-3 capitalize rounded-md cursor-pointer p-2"
 					:class="{
-						'bg-primary-light': selectedTheme === index,
+						'bg-primary/20': selectedTheme === index,
 						'hover:bg-surface-container-highest':
 							selectedTheme !== index,
 						[theme.class]: true,

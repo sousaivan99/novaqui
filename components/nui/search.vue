@@ -24,7 +24,7 @@
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         type="search"
-        class="rounded-xl body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline focus:bg-surface-container-highest hover:bg-surface-container-high active:bg-surface-container-highest disabled:bg-surface-container disabled:text-on-surface/40 duration-100 transition-all ease-in-out pl-[35px] pr-[35px] bg-surface"
+        class="rounded-md body-xs w-full text-on-surface border py-[12px] border-outline h-[40px] focus:outline focus:outline-2 focus:outline-outline focus:bg-surface-container-highest hover:bg-surface-container-high active:bg-surface-container-highest disabled:bg-surface-container disabled:text-on-surface/40 duration-100 transition-all ease-in-out pl-[35px] pr-[35px] bg-surface"
         v-bind="$attrs"
         role="searchbox"
         :aria-label="$attrs['aria-label'] || 'Search'"

@@ -17,12 +17,12 @@
 		<Transition name="fade">
 			<div
 				v-if="isOpen"
-				class="absolute profile right-0 top-full translate-y-3 rounded-xl w-[270px] h-fit bg-surface-container z-[1] shadow-md border border-outline flex flex-col justify-between"
+				class="absolute profile right-0 top-full translate-y-3 rounded-md w-[270px] h-fit bg-surface-container z-[1] shadow-md border border-outline flex flex-col justify-between"
 			>
 				<!-- Profile -->
 				<div class="w-full h-fit p-2">
 					<div
-						class="w-full h-fit px-3 py-4 bg-primary/20 rounded-lg flex items-center gap-4"
+						class="w-full h-fit px-3 py-4 bg-primary/20 rounded-md flex items-center gap-4"
 					>
 						<NuiAvatar
 							:src="

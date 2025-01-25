@@ -59,7 +59,7 @@
 
     <div
       v-if="showDatePicker"
-      class="datepicker-wrapper absolute mt-2 bg-surface-container rounded-xl shadow-lg flex w-fit z-10"
+      class="datepicker-wrapper absolute mt-2 bg-surface-container rounded-md shadow-lg flex w-fit z-10"
       @mousedown.prevent
     >
       <div class="month-container">
