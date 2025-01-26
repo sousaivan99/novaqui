@@ -138,8 +138,6 @@
 	--color-success-container: 200 230 201; /* #C8E6C9 */
 	--color-on-success-container: 27 94 32; /* #1B5E20 */
 
-
-
 	--scroll-bar-color: 60 60 70; /* #3C3C46 */
 	--scroll-bar-color-hover: 70 70 80; /* #46464C */
 	--scroll-bar-rail-color: 40 40 50; /* #282832 */
@@ -163,10 +161,8 @@
 	--scroll-bar-color: 60 60 70; /* #3C3C46 */
 	--scroll-bar-color-hover: 70 70 80; /* #46464C */
 	--scroll-bar-rail-color: 40 40 50; /* #282832 */
-
-	
 }
-.theme-blue{
+.theme-blue {
 	--color-primary: 51 153 255; /* Lighter blue, e.g., #3399FF */
 	--color-primary-light: 102 178 255; /* Even lighter blue, e.g., #66B2FF */
 	--color-on-primary: 255 255 255; /* White for contrast, e.g., #FFFFFF */
@@ -224,6 +220,120 @@
 	@apply bg-neutral-500/70;
 }
 
+.editor {
+	@apply min-h-[300px] rounded-md bg-surface-container p-4 
+		   max-w-none focus:outline-none overflow-y-auto;
+}
 
+/* List styles */
+.editor ul,
+.editorOutput ul {
+	@apply !list-disc !pl-6 !my-2;
+}
 
+.editor ul li,
+.editorOutput ul li {
+	@apply !my-1 !ml-4;
+}
+
+.editor ol,
+.editorOutput ol {
+	@apply !list-decimal !pl-6 !my-2;
+}
+
+.editor ol li,
+.editorOutput ol li {
+	@apply !my-1 !ml-4;
+}
+
+/* Link styles */
+.editor a,
+.editorOutput a {
+	@apply text-primary underline hover:text-primary/70 
+		   transition-colors duration-200;
+}
+
+/* Blockquote styles */
+.editor blockquote,
+.editorOutput blockquote {
+	@apply border-l-4 border-surface-variant pl-4 italic my-4;
+}
+
+/* Code block styles */
+.editor pre,
+.editorOutput pre {
+	@apply bg-surface-container-high p-4 rounded-md font-mono my-4;
+}
+
+/* Heading styles */
+.editor h1,
+.editorOutput h1 {
+	@apply text-2xl font-bold my-4;
+}
+
+.editor h2,
+.editorOutput h2 {
+	@apply text-xl font-bold my-3;
+}
+
+.editor h3,
+.editorOutput h3 {
+	@apply text-lg font-bold my-2;
+}
+
+/* Paragraph styles */
+.editor p,
+.editorOutput p {
+	@apply my-2 leading-relaxed;
+}
+
+/* Image styles */
+.editor img,
+.editorOutput img {
+	@apply max-w-full h-auto my-4 rounded-md;
+}
+
+/* Additional spacing for nested lists */
+.editor ul ul,
+.editor ol ol,
+.editor ul ol,
+.editor ol ul,
+.editorOutput ul ul,
+.editorOutput ol ol,
+.editorOutput ul ol,
+.editorOutput ol ul {
+	@apply ml-4 my-2;
+}
+
+/* Ensure proper spacing between list items with formatting */
+.editor li > *,
+.editorOutput li > * {
+	@apply inline-block;
+}
+
+/* Style for text selection */
+.editor ::selection,
+.editorOutput ::selection {
+	@apply bg-primary/20;
+}
+
+/* Add styles for links with target="_blank" */
+.editor a[target="_blank"]::after,
+.editorOutput a[target="_blank"]::after {
+	content: "↗";
+	display: inline-block;
+	margin-left: 2px;
+	font-size: 0.8em;
+	vertical-align: super;
+}
+
+.editor a,
+.editorOutput a {
+	@apply text-primary underline transition-colors duration-200;
+}
+
+.editor a:hover,
+.editorOutput a:hover {
+	@apply text-primary/70;
+}
 
