@@ -779,12 +779,18 @@ onMounted(() => {
 		editorRef.value.addEventListener('keydown', handleKeyDown);
 		editorRef.value.addEventListener('input', handleInput as EventListener);
 		document.addEventListener('contextmenu', handleContextMenu);
+		
+		// Add document click listener
+		document.addEventListener('click', handleDocumentClick)
 	}
 })
 
 onUnmounted(() => {
 	// Remove event listeners and clean up resources
 	document.removeEventListener('click', closeContextMenu)
+	
+	// Remove document click listener
+	document.removeEventListener('click', handleDocumentClick)
 })
 
 const updateContent = (): void => {
@@ -918,43 +924,96 @@ const openLinkModal = () => {
 }
 
 const handleContextMenu = (e: MouseEvent) => {
-	const target = e.target as HTMLElement
+	console.log('Context menu triggered');
+	const editor = editorRef.value;
+	const target = e.target as HTMLElement;
 	
-	// Check for tweet elements including iframe
-	const tweetIframe = target.closest('iframe')
-	const tweetBlockquote = target.closest('.twitter-tweet')
-	const tweetWrapper = target.closest('.tweet-wrapper') || tweetIframe?.closest('.tweet-wrapper')
-	const img = target.tagName === 'IMG' ? target : target.querySelector('img')
-	const imageWrapper = img?.closest('.image-wrapper')
-	const link = target.closest('a')
-	
-	let contextTarget: ContextMenuTarget | null = null
-	
-	if (tweetWrapper) {
-		contextTarget = { element: tweetWrapper, type: 'tweet' }
-	} else if (imageWrapper || img) {
-		contextTarget = { 
-			element: imageWrapper || img?.parentElement || img as HTMLElement, 
-			type: 'image' 
-		}
-	} else if (link && !link.closest('.tweet-wrapper')) {
-		contextTarget = { element: link, type: 'link' }
+	if (!editor?.contains(target)) {
+		console.log('Target not in editor:', target);
+		closeContextMenu();
+		return;
 	}
 	
-	if (contextTarget) {
-		e.preventDefault()
-		e.stopPropagation()
-		showContextMenu.value = true
-		contextMenuPosition.value = { x: e.clientX, y: e.clientY }
-		contextMenuTarget.value = contextTarget
+	console.log('Target element:', target.tagName, target);
+	let contextTarget: ContextMenuTarget | null = null;
+
+	// Check for images
+	if (target.tagName === 'IMG' || target.closest('img')) {
+		console.log('Image detected');
+		const img = target.tagName === 'IMG' ? target : target.closest('img');
+		if (img) {
+			console.log('Image element found:', img);
+			contextTarget = { 
+				element: img, 
+				type: 'image' 
+			};
+		}
+	}
+	// Check for tweets
+	else if (target.closest('.tweet-wrapper') || target.closest('.twitter-tweet')) {
+		console.log('Tweet detected');
+		const tweetWrapper = target.closest('.tweet-wrapper');
+		if (tweetWrapper) {
+			console.log('Tweet wrapper found:', tweetWrapper);
+			contextTarget = { 
+				element: tweetWrapper, 
+				type: 'tweet' 
+			};
+		}
+	}
+	// Check for links
+	else if (target.tagName === 'A' || target.closest('a')) {
+		console.log('Link detected');
+		const link = target.tagName === 'A' ? target : target.closest('a');
+		if (link) {
+			console.log('Link element found:', link);
+			contextTarget = { 
+				element: link, 
+				type: 'link' 
+			};
+		}
+	}
+
+	if (contextTarget && editor.contains(contextTarget.element)) {
+		console.log('Opening context menu for:', contextTarget.type);
+		e.preventDefault();
+		e.stopPropagation();
+		showContextMenu.value = true;
+		contextMenuPosition.value = { x: e.clientX, y: e.clientY };
+		contextMenuTarget.value = contextTarget;
 	} else {
-		closeContextMenu()
+		console.log('No valid target found, closing context menu');
+		closeContextMenu();
 	}
 }
 
 const closeContextMenu = () => {
 	showContextMenu.value = false
 	contextMenuTarget.value = null
+}
+
+// Add click outside handler
+const handleDocumentClick = (e: MouseEvent) => {
+	// If context menu is not shown, do nothing
+	if (!showContextMenu.value) return
+
+	// Check if click is inside the editor
+	if (editorRef.value?.contains(e.target as Node)) {
+		closeContextMenu();
+		return;
+	}
+
+	// Check if click is outside the context menu and the target element
+	const contextMenuEl = document.querySelector('.context-menu')
+	const targetEl = contextMenuTarget.value?.element
+
+	// If click is inside context menu, do nothing (allow menu interactions)
+	if (contextMenuEl?.contains(e.target as Node)) {
+		return;
+	}
+
+	// Close the context menu
+	closeContextMenu();
 }
 
 // Link handling methods
@@ -1343,13 +1402,72 @@ const contextMenuItems = computed((): ContextMenuItem[] => [
 		icon: 'ph:trash',
 		label: 'Delete',
 		action: () => {
-			if (contextMenuTarget.value) {
-				contextMenuTarget.value.element.remove()
-				updateContent()
-				showContextMenu.value = false
+			console.log('Delete action triggered');
+			if (!contextMenuTarget.value) {
+				console.log('No context target available');
+				return;
+			}
+
+			const editor = editorRef.value;
+			if (!editor?.contains(contextMenuTarget.value.element)) {
+				console.log('Target element not in editor');
+				return;
+			}
+
+			try {
+				console.log('Attempting to delete:', contextMenuTarget.value.type);
+				switch (contextMenuTarget.value.type) {
+					case 'image': {
+						const img = contextMenuTarget.value.element;
+						console.log('Found image:', img);
+						if (img && editor.contains(img)) {
+							// If image is in a wrapper, remove the wrapper, otherwise remove the image
+							const wrapper = img.closest('.image-wrapper');
+							if (wrapper && editor.contains(wrapper)) {
+								wrapper.parentNode?.removeChild(wrapper);
+								console.log('Image wrapper removed');
+							} else {
+								img.parentNode?.removeChild(img);
+								console.log('Direct image removed');
+							}
+						}
+						break;
+					}
+					case 'tweet': {
+						const wrapper = contextMenuTarget.value.element.closest('.tweet-wrapper');
+						console.log('Found tweet wrapper:', wrapper);
+						if (wrapper && editor.contains(wrapper)) {
+							wrapper.parentNode?.removeChild(wrapper);
+							console.log('Tweet successfully removed');
+						}
+						break;
+					}
+					case 'link': {
+						const link = contextMenuTarget.value.element;
+						console.log('Found link:', link);
+						if (link && link.tagName === 'A' && editor.contains(link)) {
+							const text = link.textContent || '';
+							const textNode = document.createTextNode(text);
+							link.parentNode?.replaceChild(textNode, link);
+							console.log('Link successfully removed, text preserved:', text);
+						}
+						break;
+					}
+				}
+
+				updateContent();
+				showContextMenu.value = false;
+				console.log('Content updated and context menu closed');
+			} catch (error) {
+				console.error('Error during deletion:', error);
 			}
 		},
-		showFor: ['tweet', 'image']
+		showFor: ['tweet', 'image', 'link'].filter(() => {
+			const editor = editorRef.value;
+			const isInEditor = editor?.contains(contextMenuTarget.value?.element) ?? false;
+			console.log('Show delete for:', contextMenuTarget.value?.type, 'isInEditor:', isInEditor);
+			return isInEditor;
+		})
 	},
 	{
 		icon: 'ph:pencil',
@@ -1371,7 +1489,8 @@ const contextMenuItems = computed((): ContextMenuItem[] => [
 		icon: 'ph:link-break',
 		label: 'Remove Link',
 		action: () => {
-			if (contextMenuTarget.value?.type === 'link') {
+			if (contextMenuTarget.value?.type === 'link' && 
+				contextMenuTarget.value.element.closest('.editor')) {
 				const linkElement = contextMenuTarget.value.element as HTMLAnchorElement
 				const textNode = document.createTextNode(linkElement.textContent || '')
 				linkElement.parentNode?.replaceChild(textNode, linkElement)
@@ -1379,7 +1498,9 @@ const contextMenuItems = computed((): ContextMenuItem[] => [
 				showContextMenu.value = false
 			}
 		},
-		showFor: ['link']
+		showFor: ['link'].filter(() => 
+			contextMenuTarget.value?.element.closest('.editor') !== null
+		)
 	}
 ])
 
