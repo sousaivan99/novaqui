@@ -7,6 +7,7 @@ interface Props {
 	disabled?: boolean
 	class?: string
 	icon?: string
+	iconBtn?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -15,7 +16,8 @@ const props = withDefaults(defineProps<Props>(), {
 	variant: "primary",
 	disabled: false,
 	class: "w-fit h-fit",
-	icon: ""
+	icon: "",
+	iconBtn: false
 })
 const isDarkMode = useIsDarkmode()
 
@@ -24,7 +26,7 @@ const isDarkMode = useIsDarkmode()
 	<div :class="props.class">
 		<button
 			:type="props.type"
-			class="w-full flex items-center justify-center gap-1 body-md px-4 py-1 relative overflow-hidden rounded-md transition-all duration-150 ease-in-out outline-offset-2 disabled:cursor-not-allowed"
+			class="w-full flex items-center justify-center gap-1 body-md relative overflow-hidden rounded-md transition-all duration-150 ease-in-out outline-offset-2 disabled:cursor-not-allowed"
 			:class="{
 				'bg-primary text-on-primary hover:bg-primary/80 outline-primary/80 disabled:bg-tertiary/50': props.mode === 'filled' && props.variant === 'primary',
 				'bg-secondary-container shadow text-on-secondary-container hover:bg-secondary-container/80 outline-secondary-container/80 disabled:bg-secondary-container/50': props.mode === 'filled' && props.variant === 'tonal',
@@ -36,7 +38,9 @@ const isDarkMode = useIsDarkmode()
 				'disabled:bg-secondary-container/50 disabled:text-neutral-900/70': isDarkMode && props.disabled,
 				'disabled:bg-[#1D1B20]/10 disabled:text-gray-900/80': !isDarkMode && props.disabled,
 				'disabled:text-neutral-900/70': props.mode === 'outlined' && props.disabled,
-				'disabled:text-neutral-900/70 ': props.mode === 'text' && props.disabled
+				'disabled:text-neutral-900/70 ': props.mode === 'text' && props.disabled,
+				'w-fit h-fit p-1': props.iconBtn,
+				'px-4 py-1 ': !props.iconBtn
 			}"
 			:disabled="props.disabled"
 		>
