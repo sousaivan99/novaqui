@@ -64,6 +64,10 @@ const themes = [
 		name: "Purple",
 		class: "theme-purple",
 	},
+	{
+		name: "Teal",
+		class: "theme-teal",
+	},
 ]
 
 const selectedTheme = ref(0)

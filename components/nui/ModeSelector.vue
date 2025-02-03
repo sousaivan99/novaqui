@@ -20,7 +20,7 @@ const toggleMode = () => {
 	<div
 		@click="toggleMode"
 		:class="[
-			'border border-outline hover:bg-surface-container-highest hover:border hover:border-outline/70 cursor-pointer rounded-md p-[0.35rem] flex items-center justify-center',
+			'hover:scale-105 cursor-pointer rounded-md p-[0.35rem] flex items-center justify-center',
 			{
 				'w-7 h-7': size === 'xs',
 				'w-8 h-8': size === 'sm', 

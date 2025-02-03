@@ -202,6 +202,34 @@
 	--color-on-tertiary-container: 96 96 96; /* #606060 */
 }
 
+.theme-teal {
+
+	/* Surface colors based on #020617 (very dark blue) */
+	
+
+	/* Border colors - using soft teal tones that complement the dark theme */
+	/* --border-color: 30 41 59; 
+	--border-color-variant: 51 65 85; Slightly lighter variant */
+
+	--color-primary: 20 184 166; /* text-teal-500 - darker for better contrast */
+	--color-primary-light: 45 212 191; /* text-teal-400 */
+	--color-on-primary: 255 255 255; /* White for contrast */
+	--color-primary-container: 204 251 241; /* text-teal-100 - lighter for better contrast */ 
+	--color-on-primary-container: 13 148 136; /* text-teal-600 - darker for better contrast */
+
+	--color-secondary: 102 102 255; /* #6666FF */
+	--color-secondary-light: 153 153 255; /* #9999FF */
+	--color-on-secondary: 255 255 255; /* #FFFFFF */
+	--color-secondary-container: 204 204 255; /* #CCCCFF */
+	--color-on-secondary-container: 51 51 153; /* #333399 */
+
+	--color-tertiary: 128 128 128; /* #808080 */
+	--color-tertiary-light: 192 192 192; /* #C0C0C0 */
+	--color-on-tertiary: 255 255 255; /* #FFFFFF */
+	--color-tertiary-container: 224 224 224; /* #E0E0E0 */
+	--color-on-tertiary-container: 96 96 96; /* #606060 */
+}
+
 /* Scrollbar Styles */
 ::-webkit-scrollbar {
 	width: 6px;
